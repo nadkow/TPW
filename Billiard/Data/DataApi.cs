@@ -8,12 +8,14 @@ namespace Data
 {
     internal class DataApi : DataAbstractApi
     {
+        private readonly List<Orb> orbs = new List<Orb>();
         public override void Start(int numberOfOrbs)
         {
             Random rnd = new Random();
             for (int i = 0; i< numberOfOrbs; i++)
             {
                 Orb newOrb = new Orb(rnd.Next(-100,100), rnd.Next(-100,100)); //TODO wartosci do zmiany po ustaleniu wielkosci stolu
+                orbs.Add(newOrb);
             }
         }
     }
