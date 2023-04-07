@@ -8,14 +8,17 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{482CB9F7-5D96-403A-AD6F-1D0824759ADA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{EE722187-2604-4298-A768-0CECC3FFF856}"
+	ProjectSection(ProjectDependencies) = postProject
+		{482CB9F7-5D96-403A-AD6F-1D0824759ADA} = {482CB9F7-5D96-403A-AD6F-1D0824759ADA}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", "{B1D70D12-06EA-4E74-8194-A44A8832F673}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "View\View.csproj", "{B1D70D12-06EA-4E74-8194-A44A8832F673}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{34771453-36CD-46C2-88B8-AB88C55350A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel", "ViewModel\ViewModel.csproj", "{34771453-36CD-46C2-88B8-AB88C55350A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{6F0346B2-F15C-4438-9C9D-0E84F810D67A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{6F0346B2-F15C-4438-9C9D-0E84F810D67A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AplikacjaTestowa", "AplikacjaTestowa\AplikacjaTestowa.csproj", "{E8539553-67FC-4D52-BB47-D1B3CFBFF1B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AplikacjaTestowa", "AplikacjaTestowa\AplikacjaTestowa.csproj", "{E8539553-67FC-4D52-BB47-D1B3CFBFF1B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

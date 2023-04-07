@@ -1,5 +1,11 @@
 ﻿using Data;
+using Logic;
 
-Orb orb = new(10, 10);
+LogicAbstractApi logic = LogicAbstractApi.CreateApi();
+logic.Start();
 
-while (true) { }
+int i=0;
+while ( i<1000)
+    { 
+    i++;
+    }

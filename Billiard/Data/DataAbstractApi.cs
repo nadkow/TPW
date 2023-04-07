@@ -9,6 +9,11 @@ namespace Data
 {
     public abstract class DataAbstractApi
     {
+        public static DataAbstractApi CreateApi()
+        {
+            return new DataApi();
+        }
+
         public abstract void Start(int numberOfOrbs);
     }
 }

@@ -16,6 +16,7 @@ namespace Data
             {
                 Orb newOrb = new Orb(rnd.Next(-100,100), rnd.Next(-100,100)); //TODO wartosci do zmiany po ustaleniu wielkosci stolu
                 orbs.Add(newOrb);
+                Console.WriteLine("orb " + i);
             }
         }
     }
