@@ -19,5 +19,13 @@ namespace Data
                 Console.WriteLine("orb " + i);
             }
         }
+
+        public override void Dispose()
+        {
+            foreach(Orb orb in orbs)
+            {
+                orb.DisposeTimer();
+            }
+        }
     }
 }

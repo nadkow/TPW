@@ -15,5 +15,6 @@ namespace Data
         }
 
         public abstract void Start(int tableWidth, int tableHeight, int numberOfOrbs);
+        public abstract void Dispose();
     }
 }

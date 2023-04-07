@@ -9,16 +9,21 @@ namespace Logic
 {
     internal class LogicApi : LogicAbstractApi
     {
-        private DataAbstractApi dataAPI;
+        private DataAbstractApi dataApi;
 
         public LogicApi()
         {
-            this.dataAPI = DataAbstractApi.CreateApi();
+            this.dataApi = DataAbstractApi.CreateApi();
         }
 
         public override void Start(int width, int height, int noOfOrbs)
         {
-            this.dataAPI.Start(width, height, noOfOrbs); //TODO number of orbs bedzie podany przez uzytkownika
+            this.dataApi.Start(width, height, noOfOrbs);
+        }
+
+        public override void Dispose()
+        {
+            this.dataApi.Dispose();
         }
     }
 }
