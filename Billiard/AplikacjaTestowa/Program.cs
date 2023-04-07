@@ -2,10 +2,10 @@
 using Logic;
 
 LogicAbstractApi logic = LogicAbstractApi.CreateApi();
-logic.Start();
+logic.Start(100, 100, 8);
 
 int i=0;
-while ( i<1000)
+while ( i<2000)
     { 
     i++;
     }

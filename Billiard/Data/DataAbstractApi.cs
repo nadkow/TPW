@@ -14,6 +14,6 @@ namespace Data
             return new DataApi();
         }
 
-        public abstract void Start(int numberOfOrbs);
+        public abstract void Start(int tableWidth, int tableHeight, int numberOfOrbs);
     }
 }

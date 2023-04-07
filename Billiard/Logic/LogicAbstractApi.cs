@@ -7,6 +7,6 @@
             return new LogicApi();
         }
 
-        public abstract void Start();
+        public abstract void Start(int width, int height, int noOfOrbs);
     }
 }

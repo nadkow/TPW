@@ -16,9 +16,9 @@ namespace Logic
             this.dataAPI = DataAbstractApi.CreateApi();
         }
 
-        public override void Start()
+        public override void Start(int width, int height, int noOfOrbs)
         {
-            this.dataAPI.Start(6); //TODO number of orbs bedzie podany przez uzytkownika
+            this.dataAPI.Start(width, height, noOfOrbs); //TODO number of orbs bedzie podany przez uzytkownika
         }
     }
 }
