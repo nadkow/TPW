@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Data
 {
-    public class Orb
+    public class Orb : INotifyPropertyChanged
     {
         private int x;
         private int y;
@@ -23,13 +23,17 @@ namespace Data
         {   
             x += rnd.Next(-10,10); //TODO wartosci do zmiany po ustaleniu wielkosci stolu
             y += rnd.Next(-10,10);
-            Console.WriteLine(x);
-            Console.WriteLine(y);
+            OnPropertyChanged("Position");
         }
 
         public void DisposeTimer()
         {
             ChangePositionTimer.Dispose();
+        }
+
+        protected void OnPropertyChanged([CallerMemberName] string name = "")
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
     }

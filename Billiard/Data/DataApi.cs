@@ -9,6 +9,7 @@ namespace Data
     internal class DataApi : DataAbstractApi
     {
         private readonly List<Orb> orbs = new List<Orb>();
+
         public override void Start(int tableWidth, int tableHeight, int numberOfOrbs)
         {
             Random rnd = new Random();
@@ -26,6 +27,11 @@ namespace Data
             {
                 orb.DisposeTimer();
             }
+        }
+
+        public override List<Orb> getOrbs()
+        {
+            return orbs;
         }
     }
 }

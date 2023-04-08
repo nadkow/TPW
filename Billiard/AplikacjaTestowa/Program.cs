@@ -3,10 +3,7 @@
 ModelAbstractApi model = ModelAbstractApi.CreateApi();
 model.Start(8);
 
-int i=0;
-while ( i<2000)
+while (true)
     { 
-    i++;
-    }
 
-model.Stop();
+    }
