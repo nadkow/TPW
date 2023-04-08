@@ -27,16 +27,5 @@ namespace View
         {
             InitializeComponent();
         }
-        private void Wstaw_Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                int liczba = int.Parse(TextBoxIloscKul.Text);
-            }
-            catch(FormatException e1) {
-                MessageBox.Show("Należy wpisać liczbę całkowitą!", "Błąd");
-            }
-            
-        }
     }
 }
