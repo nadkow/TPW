@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace View
 {
     /// <summary>
@@ -23,6 +26,17 @@ namespace View
         public MainWindow()
         {
             InitializeComponent();
+        }
+        private void Wstaw_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int liczba = int.Parse(TextBoxIloscKul.Text);
+            }
+            catch(FormatException e1) {
+                MessageBox.Show("Należy wpisać liczbę całkowitą!", "Błąd");
+            }
+            
         }
     }
 }
