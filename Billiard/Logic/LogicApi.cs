@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Data;
@@ -11,6 +12,10 @@ namespace Logic
     internal class LogicApi : LogicAbstractApi
     {
         private DataAbstractApi dataApi;
+        private int width;
+        private int height;
+
+        public override event PropertyChangedEventHandler? PropertyChanged;
 
         public LogicApi()
         {
@@ -19,6 +24,8 @@ namespace Logic
 
         public override void Start(int width, int height, int noOfOrbs)
         {
+            this.width = width;
+            this.height = -height;
             this.dataApi.Start(width, height, noOfOrbs);
             foreach (Orb orb in this.dataApi.getOrbs())
             {
@@ -32,16 +39,28 @@ namespace Logic
             this.dataApi.Dispose();
         }
 
-        private void OrbPosChanged(object source, PropertyChangedEventArgs e)
+        private void OrbPosChanged(object sender, PropertyChangedEventArgs e)
         {
-            Console.WriteLine("event raised");
             if (e.PropertyName == "Position")
             {
-                Console.WriteLine("pos changed");
                 // stol pilnuje czy kule znajduja sie wewnatrz niego
-                // TODO tutaj kod zawracajacy lub usuwajacy kule jesli zderza sie ze scianka stolu
-                // TODO jesli kula nie wyszla poza stol to wyslij event z logic do model informujacy o pozycji kuli
+                Orb orb = (Orb)sender;
+                if (orb.X > width || orb.Y < height)
+                {
+                    Console.WriteLine("wyszla poza stol. x = " + orb.X + " y = " + orb.Y);
+                    orb.DisposeTimer();
+                }
+                // jesli kula nie wyszla poza stol to wyslij event z logic do model informujacy o pozycji kuli
+                else
+                {
+                    OnPropertyChanged("Position");
+                }
             }
+        }
+
+        protected void OnPropertyChanged([CallerMemberName] string name = "")
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

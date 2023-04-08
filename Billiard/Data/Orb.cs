@@ -10,7 +10,11 @@ namespace Data
         private int d = 10; //TODO wartosc do zmiany po ustaleniu wielkosci stolu
         private Timer ChangePositionTimer;
         private Random rnd = new Random();
-        public event PropertyChangedEventHandler PropertyChanged;
+
+        public int X { get => x; set => x = value; }
+        public int Y { get => y; set => y = value; }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public Orb(int x, int y)
         {

@@ -9,6 +9,7 @@ namespace Model
         public ModelApi()
         {
             this.logicApi = LogicAbstractApi.CreateApi();
+            this.logicApi.PropertyChanged += OrbPosChanged;
         }
 
         public override void Start(int noOfOrbs)
@@ -19,6 +20,11 @@ namespace Model
         public override void Stop()
         {
             this.logicApi.Dispose();
+        }
+
+        private void OrbPosChanged(object sender, EventArgs e)
+        {
+            // TODO tutaj dalej przesylanie pozycji orb
         }
     }
 }
