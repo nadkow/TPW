@@ -1,6 +1,6 @@
 ﻿namespace ViewModel
 {
-    public class ViewModel
+    public class ViewModelApi
     {
 
     }

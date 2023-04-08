@@ -14,7 +14,7 @@ namespace Model
 
         public override void Start(int noOfOrbs)
         {
-            this.logicApi.Start(500, 600, noOfOrbs); // nie wiem czy tutaj maja byc podane wymiary stolu
+            this.logicApi.Start(300, 400, noOfOrbs); // nie wiem czy tutaj maja byc podane wymiary stolu
         }
 
         public override void Stop()
