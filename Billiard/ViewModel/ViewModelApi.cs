@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Model;
 
@@ -7,6 +8,7 @@ namespace ViewModel
     public class ViewModelApi
     {
         private ModelAbstractApi modelApi;
+        private ObservableCollection<Circle> balls;
         public StartButtonCommand ButtonCommand {get; set;}
         private int _ilosc;
         public int Ilosc
@@ -16,6 +18,9 @@ namespace ViewModel
                 _ilosc = Convert.ToInt32(value);
             }
         }
+
+        public ObservableCollection<Circle> Balls { get => balls; set => balls = value; }
+
         public ViewModelApi()
         {
             ButtonCommand = new StartButtonCommand(this);
