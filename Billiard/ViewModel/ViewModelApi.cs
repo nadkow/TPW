@@ -5,12 +5,15 @@ using Model;
 
 namespace ViewModel
 {
-    public class ViewModelApi
+    public class ViewModelApi : INotifyPropertyChanged
     {
         private ModelAbstractApi modelApi;
         private ObservableCollection<Circle> balls = new ObservableCollection<Circle>();
         public StartButtonCommand ButtonCommand {get; set;}
         private int _ilosc;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
         public int Ilosc
         {
             get { return _ilosc; }
@@ -25,6 +28,7 @@ namespace ViewModel
         {
             ButtonCommand = new StartButtonCommand(this);
             modelApi = new ModelApi();
+            modelApi.PropertyChanged += Update;
         }
         public void Start()
         {
@@ -35,6 +39,19 @@ namespace ViewModel
         public void ButtonStartClick()
         {
             Start();
+        }
+
+        private void Update(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Position")
+            {
+                OnPropertyChanged("Position");
+            }
+        }
+
+        protected void OnPropertyChanged([CallerMemberName] string name = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

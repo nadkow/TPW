@@ -1,6 +1,7 @@
 ﻿using Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,17 @@ namespace Model
             x = orb.X;
             y = orb.Y;
             diameter = orb.D;
+            orb.PropertyChanged += Update;
+        }
+
+        private void Update(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Position")
+            {
+                Orb orb = (Orb)sender;
+                x = orb.X;
+                y = orb.Y;
+            }
         }
 
         public int X { get => x; set => x = value; }

@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Data;
 using Logic;
 
@@ -8,6 +10,7 @@ namespace Model
     {
         private LogicAbstractApi logicApi;
         private ObservableCollection<Circle> balls = new ObservableCollection<Circle>();
+        public override event PropertyChangedEventHandler? PropertyChanged;
 
         public override ObservableCollection<Circle> GetBalls() { return balls; }
 
@@ -38,9 +41,17 @@ namespace Model
             this.logicApi.Dispose();
         }
 
-        private void OrbPosChanged(object sender, EventArgs e)
+        private void OrbPosChanged(object sender, PropertyChangedEventArgs e)
         {
-            // TODO tutaj dalej przesylanie pozycji orb
+            if (e.PropertyName == "Position")
+            {
+                OnPropertyChanged("Position");
+            }
+        }
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

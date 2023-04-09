@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Model
 {
-    public abstract class ModelAbstractApi
+    public abstract class ModelAbstractApi : INotifyPropertyChanged
     {
+        public abstract event PropertyChangedEventHandler? PropertyChanged;
+
         public static ModelAbstractApi CreateApi()
         {
             return new ModelApi();
