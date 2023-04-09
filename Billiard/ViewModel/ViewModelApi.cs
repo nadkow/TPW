@@ -34,6 +34,7 @@ namespace ViewModel
         {
             this.modelApi.Start(_ilosc);
             this.balls = modelApi.GetBalls();
+            OnPropertyChanged(nameof(Balls));
         }
 
         public void ButtonStartClick()
@@ -45,14 +46,13 @@ namespace ViewModel
         {
             if (e.PropertyName == "Position")
             {
-                OnPropertyChanged("Position");
+                // TODO tu bedzie update listy 
             }
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-            Console.WriteLine("Wywolano property changed do view"); // TODO usunac
         }
     }
 }

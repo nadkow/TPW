@@ -17,7 +17,7 @@ namespace Model
         public ModelApi()
         {
             this.logicApi = LogicAbstractApi.CreateApi();
-            this.logicApi.PropertyChanged += OrbPosChanged;
+            //this.logicApi.PropertyChanged += OrbPosChanged;
         }
 
         private void GetCircles()
@@ -31,7 +31,7 @@ namespace Model
 
         public override void Start(int noOfOrbs)
         {
-            this.logicApi.Start(300-5, 400-5, noOfOrbs); // -5 bo promien kulki
+            this.logicApi.Start(290, 390, noOfOrbs); // -5 bo promien kulki
             GetCircles();
 
         }

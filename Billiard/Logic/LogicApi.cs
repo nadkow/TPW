@@ -50,15 +50,9 @@ namespace Logic
             {
                 // stol pilnuje czy kule znajduja sie wewnatrz niego
                 Orb orb = (Orb)sender;
-                if (orb.X > width || orb.Y > height)
+                if (orb.X > width || orb.Y > height || orb.X < 0 || orb.Y < 0)
                 {
-                    Console.WriteLine("wyszla poza stol. x = " + orb.X + " y = " + orb.Y);
                     orb.DisposeTimer();
-                }
-                // jesli kula nie wyszla poza stol to wyslij event z logic do model informujacy o pozycji kuli
-                else
-                {
-                    OnPropertyChanged("Position");
                 }
             }
         }

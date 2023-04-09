@@ -17,7 +17,6 @@ namespace Data
             {
                 Orb newOrb = new Orb(rnd.Next(0, tableWidth), rnd.Next(0, tableHeight));
                 orbs.Add(newOrb);
-                Console.WriteLine("orb " + i);
             }
         }
 
