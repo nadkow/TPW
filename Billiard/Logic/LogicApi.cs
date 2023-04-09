@@ -22,10 +22,15 @@ namespace Logic
             this.dataApi = DataAbstractApi.CreateApi();
         }
 
+        public override List<Orb> GetOrbs()
+        {
+            return dataApi.getOrbs();
+        }
+
         public override void Start(int width, int height, int noOfOrbs)
         {
             this.width = width;
-            this.height = -height;
+            this.height = height;
             this.dataApi.Start(width, height, noOfOrbs);
             foreach (Orb orb in this.dataApi.getOrbs())
             {
@@ -45,7 +50,7 @@ namespace Logic
             {
                 // stol pilnuje czy kule znajduja sie wewnatrz niego
                 Orb orb = (Orb)sender;
-                if (orb.X > width || orb.Y < height)
+                if (orb.X > width || orb.Y > height)
                 {
                     Console.WriteLine("wyszla poza stol. x = " + orb.X + " y = " + orb.Y);
                     orb.DisposeTimer();

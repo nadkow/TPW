@@ -15,7 +15,7 @@ namespace Data
             Random rnd = new Random();
             for (int i = 0; i< numberOfOrbs; i++)
             {
-                Orb newOrb = new Orb(rnd.Next(0, tableWidth), rnd.Next(-tableHeight, 0));
+                Orb newOrb = new Orb(rnd.Next(0, tableWidth), rnd.Next(0, tableHeight));
                 orbs.Add(newOrb);
                 Console.WriteLine("orb " + i);
             }

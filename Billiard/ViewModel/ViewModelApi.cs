@@ -8,7 +8,7 @@ namespace ViewModel
     public class ViewModelApi
     {
         private ModelAbstractApi modelApi;
-        private ObservableCollection<Circle> balls;
+        private ObservableCollection<Circle> balls = new ObservableCollection<Circle>();
         public StartButtonCommand ButtonCommand {get; set;}
         private int _ilosc;
         public int Ilosc
@@ -29,6 +29,7 @@ namespace ViewModel
         public void Start()
         {
             this.modelApi.Start(_ilosc);
+            this.balls = modelApi.GetBalls();
         }
 
         public void ButtonStartClick()

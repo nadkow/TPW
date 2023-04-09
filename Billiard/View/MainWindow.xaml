@@ -24,7 +24,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Ellipse Width= "{Binding Diameter}" Height="{Binding Diameter}" Fill="HotPink" />
+                        <Ellipse Width= "{Binding Diameter}" Height="{Binding Diameter}" Fill="HotPink" Stroke="BlueViolet"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemContainerStyle>

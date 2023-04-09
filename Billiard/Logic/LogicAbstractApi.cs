@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Data;
+using System.ComponentModel;
 
 namespace Logic
 {
@@ -11,6 +12,7 @@ namespace Logic
             return new LogicApi();
         }
 
+        public abstract List<Orb> GetOrbs();
         public abstract void Start(int width, int height, int noOfOrbs);
         public abstract void Dispose();
     }
