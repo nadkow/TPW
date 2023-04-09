@@ -12,17 +12,17 @@ namespace Model
     public class Circle : INotifyPropertyChanged
     {
         // wizualna reprezentacja Orb
-        private int x;
-        private int y;
+        private double x;
+        private double y;
         private int diameter;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Circle(Orb orb)
         {
-            x = orb.X;
-            y = orb.Y;
             diameter = orb.D;
+            x = orb.X - 5;
+            y = orb.Y - 5; 
             orb.PropertyChanged += Update;
         }
 
@@ -31,13 +31,13 @@ namespace Model
             if (e.PropertyName == "Position")
             {
                 Orb orb = (Orb)sender;
-                X = orb.X;
-                Y = orb.Y;
+                X = orb.X - 5;
+                Y = orb.Y - 5;
             }
         }
 
-        public int X { get => x; set { x = value; OnPropertyChanged(nameof(X)); } }
-        public int Y { get => y; set { y = value; OnPropertyChanged(nameof(Y)); } }
+        public double X { get => x; set { x = value; OnPropertyChanged(nameof(X)); } }
+        public double Y { get => y; set { y = value; OnPropertyChanged(nameof(Y)); } }
         public int Diameter { get => diameter; set => diameter = value; }
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)
