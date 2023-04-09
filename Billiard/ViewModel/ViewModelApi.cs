@@ -52,6 +52,7 @@ namespace ViewModel
         protected void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            Console.WriteLine("Wywolano property changed do view"); // TODO usunac
         }
     }
 }

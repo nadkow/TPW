@@ -1,7 +1,8 @@
-﻿using Model;
+﻿using ViewModel;
 
-ModelAbstractApi model = ModelAbstractApi.CreateApi();
-model.Start(1);
+ViewModelApi model = new ViewModelApi();
+model.Ilosc = 2;
+model.Start();
 
 while (true)
     { 
