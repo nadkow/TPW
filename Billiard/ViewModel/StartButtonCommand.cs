@@ -10,6 +10,7 @@ namespace ViewModel
     public class StartButtonCommand : ICommand
     {
         ViewModelApi buttonViewModel;
+        bool flag = true;
         public StartButtonCommand(ViewModelApi viewModel)
         {
             buttonViewModel = viewModel;
@@ -18,12 +19,13 @@ namespace ViewModel
 
         public bool CanExecute(object? parameter)
         {
-            return true; // czyli przycisk jest klikalny
+            return flag; // czyli przycisk jest klikalny
         }
 
         public void Execute(object? parameter)
         {
             buttonViewModel.ButtonStartClick();
+            flag = false;
         }
     }
 }
