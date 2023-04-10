@@ -16,9 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel", "ViewModel\View
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{6F0346B2-F15C-4438-9C9D-0E84F810D67A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AplikacjaTestowa", "AplikacjaTestowa\AplikacjaTestowa.csproj", "{E8539553-67FC-4D52-BB47-D1B3CFBFF1B7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", "{85737F5E-F9FF-4967-894C-E163BEA24C6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "View\View.csproj", "{85737F5E-F9FF-4967-894C-E163BEA24C6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,10 +44,6 @@ Global
 		{6F0346B2-F15C-4438-9C9D-0E84F810D67A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F0346B2-F15C-4438-9C9D-0E84F810D67A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F0346B2-F15C-4438-9C9D-0E84F810D67A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E8539553-67FC-4D52-BB47-D1B3CFBFF1B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E8539553-67FC-4D52-BB47-D1B3CFBFF1B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E8539553-67FC-4D52-BB47-D1B3CFBFF1B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E8539553-67FC-4D52-BB47-D1B3CFBFF1B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{85737F5E-F9FF-4967-894C-E163BEA24C6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{85737F5E-F9FF-4967-894C-E163BEA24C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85737F5E-F9FF-4967-894C-E163BEA24C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -24,5 +24,15 @@ namespace TestProject
             Assert.That(orb.Y, Is.AtLeast(0));
             Assert.That(orb.X, Is.AtLeast(0));
         }
+
+        [Test]
+        public void OrbEventTest()
+        {
+            bool wasRaise = false;
+            Orb orb = new(10, 10);
+            orb.PropertyChanged += (s, e) => { wasRaise = true; };
+            orb.ChangePosition(null);
+            Assert.That(wasRaise, Is.EqualTo(true));
+        }
     }
 }

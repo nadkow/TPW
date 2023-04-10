@@ -24,7 +24,7 @@ namespace Data
             ChangePositionTimer = new Timer(ChangePosition, null, 0, 100);
         }
 
-        private void ChangePosition(object? state) //zeby mozna bylo uzyc changePosition w Timerze musi mieć argument object
+        public void ChangePosition(object? state) //zeby mozna bylo uzyc changePosition w Timerze musi mieć argument object
         {   
             x += rnd.NextDouble()*10-5;
             y += rnd.NextDouble()*10-5;
