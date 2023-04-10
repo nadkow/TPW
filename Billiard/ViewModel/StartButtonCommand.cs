@@ -19,7 +19,7 @@ namespace ViewModel
 
         public bool CanExecute(object? parameter)
         {
-            return flag; // czyli przycisk jest klikalny
+            return flag; // czy przycisk jest klikalny
         }
 
         public void Execute(object? parameter)

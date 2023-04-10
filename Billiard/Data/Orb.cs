@@ -26,7 +26,7 @@ namespace Data
 
         private void ChangePosition(object? state) //zeby mozna bylo uzyc changePosition w Timerze musi mieć argument object
         {   
-            x += rnd.NextDouble()*10-5; //TODO wartosci do zmiany po ustaleniu wielkosci stolu
+            x += rnd.NextDouble()*10-5;
             y += rnd.NextDouble()*10-5;
             OnPropertyChanged("Position");
         }
