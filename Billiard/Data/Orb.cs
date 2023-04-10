@@ -7,7 +7,7 @@ namespace Data
     {
         private double x;
         private double y;
-        private int d = 10; //TODO wartosc do zmiany po ustaleniu wielkosci stolu
+        private int d = 10; 
         private Timer ChangePositionTimer;
         private Random rnd = new Random();
 

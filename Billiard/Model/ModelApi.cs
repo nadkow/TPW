@@ -17,7 +17,6 @@ namespace Model
         public ModelApi()
         {
             this.logicApi = LogicAbstractApi.CreateApi();
-            //this.logicApi.PropertyChanged += OrbPosChanged;
         }
 
         private void GetCircles()
