@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Data
 {
-    public class Orb : INotifyPropertyChanged
+    public class Orb : IOrb, INotifyPropertyChanged
     {
         private double x;
         private double y;
