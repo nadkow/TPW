@@ -14,9 +14,10 @@ namespace Model
 
         public override ObservableCollection<Circle> GetBalls() { return balls; }
 
-        public ModelApi()
+        public ModelApi(LogicAbstractApi api = null)
         {
-            this.logicApi = LogicAbstractApi.CreateApi();
+            if (api != null) { logicApi = api; }
+            else { logicApi = LogicAbstractApi.CreateApi(); }
         }
 
         private void GetCircles()

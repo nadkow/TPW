@@ -24,10 +24,12 @@ namespace ViewModel
 
         public ObservableCollection<Circle> Balls { get => balls; set => balls = value; }
 
-        public ViewModelApi()
+        public ViewModelApi() : this(null) { }
+        public ViewModelApi(ModelAbstractApi api)
         {
             ButtonCommand = new StartButtonCommand(this);
-            modelApi = new ModelApi();
+            if (api != null) { modelApi = api; }
+            else { modelApi = ModelAbstractApi.CreateApi(); }
             modelApi.PropertyChanged += Update;
         }
         public void Start()

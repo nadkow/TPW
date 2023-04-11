@@ -17,9 +17,10 @@ namespace Logic
 
         public override event PropertyChangedEventHandler? PropertyChanged;
 
-        public LogicApi()
+        public LogicApi(DataAbstractApi api = null)
         {
-            this.dataApi = DataAbstractApi.CreateApi();
+            if (api != null) { dataApi = api; }
+            else { dataApi = DataAbstractApi.CreateApi(); }
         }
 
         public override List<Orb> GetOrbs()
