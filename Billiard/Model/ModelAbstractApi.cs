@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Data;
+using Logic;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -16,6 +18,12 @@ namespace Model
         {
             return new ModelApi();
         }
+
+        public static ModelAbstractApi CreateApi(LogicAbstractApi? LogicApi)
+        {
+            return new ModelApi(LogicApi);
+        }
+
         public abstract ObservableCollection<Circle> GetBalls();
         public abstract void Start(int noOfOrbs);
         public abstract void Stop();
