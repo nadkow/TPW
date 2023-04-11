@@ -25,6 +25,12 @@ namespace TestProject
             Assert.That(orb.X, Is.AtLeast(0));
         }
 
+        [Test] public void DataDisposeTest()
+        {
+            DataApi.Dispose();
+            Assert.That(DataApi.getOrbs().Count, Is.EqualTo(0));
+        }
+
         [Test]
         public void OrbEventTest()
         {

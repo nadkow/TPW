@@ -39,6 +39,11 @@ namespace ViewModel
             OnPropertyChanged(nameof(Balls));
         }
 
+        public void Stop()
+        {
+            this.modelApi.Stop();
+        }
+
         public void ButtonStartClick()
         {
             Start();

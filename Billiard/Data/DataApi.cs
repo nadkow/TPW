@@ -26,6 +26,7 @@ namespace Data
             {
                 orb.DisposeTimer();
             }
+            orbs.Clear();
         }
 
         public override List<Orb> getOrbs()

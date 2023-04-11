@@ -17,7 +17,11 @@ namespace TestProject
 
             public override void Dispose()
             {
-                throw new NotImplementedException();
+                foreach (Orb orb in orbs)
+                {
+                    orb.DisposeTimer();
+                }
+                orbs.Clear();
             }
 
             public override List<Orb> getOrbs()
@@ -43,6 +47,14 @@ namespace TestProject
             LogicApi.Start(100, 100, 10);
             Assert.IsNotNull(LogicApi.GetOrbs());
             Assert.That(10, Is.EqualTo(LogicApi.GetOrbs().Count));
+        }
+        [Test]
+        public void LogicStopTest()
+        {
+            Assert.That(10, Is.EqualTo(LogicApi.GetOrbs().Count));
+            LogicApi.Dispose();
+            Assert.That(0, Is.EqualTo(LogicApi.GetOrbs().Count));
+
         }
 
     }
