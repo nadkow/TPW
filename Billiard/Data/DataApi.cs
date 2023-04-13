@@ -8,30 +8,15 @@ namespace Data
 {
     internal class DataApi : DataAbstractApi
     {
-        private readonly List<Orb> orbs = new List<Orb>();
-
-        public override void Start(int tableWidth, int tableHeight, int numberOfOrbs)
+        public override Orb CreateOrb(int tableWidth, int tableHeight)
         {
             Random rnd = new Random();
-            for (int i = 0; i< numberOfOrbs; i++)
-            {
-                Orb newOrb = new Orb(rnd.Next(0, tableWidth), rnd.Next(0, tableHeight));
-                orbs.Add(newOrb);
-            }
+            return new Orb(rnd.Next(0, tableWidth), rnd.Next(0, tableHeight));
         }
 
-        public override void Dispose()
+        public override void Dispose(Orb orb)
         {
-            foreach(Orb orb in orbs)
-            {
-                orb.DisposeTimer();
-            }
-            orbs.Clear();
-        }
-
-        public override List<Orb> getOrbs()
-        {
-            return orbs;
+            orb.DisposeTimer();
         }
     }
 }

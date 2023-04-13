@@ -28,7 +28,7 @@ namespace Data
         {   
             x += rnd.NextDouble()*10-5;
             y += rnd.NextDouble()*10-5;
-            OnPropertyChanged("Position");
+            OnPropertyChanged();
         }
 
         public void DisposeTimer()

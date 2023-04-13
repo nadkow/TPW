@@ -14,6 +14,8 @@ namespace Logic
         private DataAbstractApi dataApi;
         private int width;
         private int height;
+        private readonly List<Orb> orbs = new List<Orb>();
+
 
         public override event PropertyChangedEventHandler? PropertyChanged;
 
@@ -25,15 +27,19 @@ namespace Logic
 
         public override List<Orb> GetOrbs()
         {
-            return dataApi.getOrbs();
+            return orbs;
         }
 
         public override void Start(int width, int height, int noOfOrbs)
         {
             this.width = width;
             this.height = height;
-            this.dataApi.Start(width, height, noOfOrbs);
-            foreach (Orb orb in this.dataApi.getOrbs())
+            for (int i = 0; i < noOfOrbs; i++)
+            {
+                Orb newOrb = dataApi.CreateOrb(width, height);
+                orbs.Add(newOrb);
+            }
+            foreach (Orb orb in orbs)
             {
                 orb.PropertyChanged += OrbPosChanged;
             }
@@ -42,20 +48,21 @@ namespace Logic
 
         public override void Dispose()
         {
-            this.dataApi.Dispose();
+            foreach (Orb orb in orbs)
+            {
+                dataApi.Dispose(orb);
+            }
+
         }
 
         private void OrbPosChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Position")
-            {
                 // stol pilnuje czy kule znajduja sie wewnatrz niego
                 Orb orb = (Orb)sender;
                 if (orb.X > width || orb.Y > height || orb.X < 0 || orb.Y < 0)
                 {
                     orb.DisposeTimer();
                 }
-            }
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = "")

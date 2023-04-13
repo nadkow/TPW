@@ -12,9 +12,8 @@ namespace Data
         {
             return new DataApi();
         }
-        public abstract List<Orb> getOrbs();
 
-        public abstract void Start(int tableWidth, int tableHeight, int numberOfOrbs);
-        public abstract void Dispose();
+        public abstract Orb CreateOrb(int tableWidth, int tableHeight);
+        public abstract void Dispose(Orb orb);
     }
 }
