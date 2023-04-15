@@ -10,7 +10,6 @@ namespace Logic
 {
     public interface ILogicOrb : INotifyPropertyChanged
     {
-        //public abstract event PropertyChangedEventHandler? PropertyChanged;
         public ILogicOrb createOrb(IOrb orb)
         {
             return new LogicOrb(orb);

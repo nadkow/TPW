@@ -23,7 +23,7 @@ namespace Model
             diameter = orb.D;
             x = orb.X - 5;
             y = orb.Y - 5; 
-            //orb.PropertyChanged += Update;
+            orb.PropertyChanged += Update;
         }
 
         private void Update(object sender, PropertyChangedEventArgs e)
@@ -31,6 +31,7 @@ namespace Model
                 ILogicOrb orb = (ILogicOrb)sender;
                 X = orb.X - 5;
                 Y = orb.Y - 5;
+                OnPropertyChanged(); //? nie wiem czy potrzebne
         }
 
         public double X { get => x; set { x = value; OnPropertyChanged(nameof(X)); } }

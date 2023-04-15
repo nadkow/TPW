@@ -51,10 +51,7 @@ namespace ViewModel
 
         private void Update(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Position")
-            {
-                // TODO tu bedzie update listy 
-            }
+                // TODO tu bedzie update listy
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = "")
