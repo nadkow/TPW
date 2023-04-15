@@ -28,12 +28,9 @@ namespace Model
 
         private void Update(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Position")
-            {
                 Orb orb = (Orb)sender;
                 X = orb.X - 5;
                 Y = orb.Y - 5;
-            }
         }
 
         public double X { get => x; set { x = value; OnPropertyChanged(nameof(X)); } }
