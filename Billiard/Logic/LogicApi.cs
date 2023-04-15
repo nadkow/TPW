@@ -15,6 +15,7 @@ namespace Logic
         private int width;
         private int height;
         private readonly List<Orb> orbs = new List<Orb>();
+        private readonly List<ILogicOrb> logicOrbs = new List<ILogicOrb>();
 
 
         public override event PropertyChangedEventHandler? PropertyChanged;
@@ -29,6 +30,10 @@ namespace Logic
         {
             return orbs;
         }
+        public override List<ILogicOrb> GetLogicOrbs()
+        {
+            return logicOrbs;
+        }
 
         public override void Start(int width, int height, int noOfOrbs)
         {
@@ -38,6 +43,9 @@ namespace Logic
             {
                 Orb newOrb = dataApi.CreateOrb(width, height);
                 orbs.Add(newOrb);
+                ILogicOrb newLogicOrb = new LogicOrb(newOrb);
+                logicOrbs.Add(newLogicOrb);
+
             }
             foreach (Orb orb in orbs)
             {

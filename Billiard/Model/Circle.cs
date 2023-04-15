@@ -1,4 +1,4 @@
-﻿using Data;
+﻿using Logic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,17 +18,17 @@ namespace Model
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public Circle(Orb orb)
+        public Circle(ILogicOrb orb)
         {
             diameter = orb.D;
             x = orb.X - 5;
             y = orb.Y - 5; 
-            orb.PropertyChanged += Update;
+            //orb.PropertyChanged += Update;
         }
 
         private void Update(object sender, PropertyChangedEventArgs e)
         {
-                Orb orb = (Orb)sender;
+                ILogicOrb orb = (ILogicOrb)sender;
                 X = orb.X - 5;
                 Y = orb.Y - 5;
         }

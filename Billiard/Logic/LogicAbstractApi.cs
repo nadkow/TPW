@@ -18,6 +18,7 @@ namespace Logic
         }
 
         public abstract List<Orb> GetOrbs();
+        public abstract List<ILogicOrb> GetLogicOrbs();
         public abstract void Start(int width, int height, int noOfOrbs);
         public abstract void Dispose();
     }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Data;
 using Logic;
 
 namespace Model
@@ -23,7 +22,7 @@ namespace Model
         private void GetCircles()
         {
             balls.Clear();
-            foreach(Orb orb in this.logicApi.GetOrbs())
+            foreach(ILogicOrb orb in this.logicApi.GetLogicOrbs())
             {
                 balls.Add(new Circle(orb));
             }
@@ -43,10 +42,7 @@ namespace Model
 
         private void OrbPosChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Position")
-            {
-                OnPropertyChanged("Position");
-            }
+                OnPropertyChanged();
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")

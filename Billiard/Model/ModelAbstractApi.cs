@@ -15,7 +15,7 @@ namespace Model
         public abstract event PropertyChangedEventHandler? PropertyChanged;
 
         public static ModelAbstractApi CreateApi()
-        {
+        {  
             return new ModelApi();
         }
 
