@@ -17,7 +17,7 @@ namespace Logic
             return new LogicApi(DataApi);
         }
 
-        public abstract List<Orb> GetOrbs();
+        public abstract List<IOrb> GetOrbs();
         public abstract List<ILogicOrb> GetLogicOrbs();
         public abstract void Start(int width, int height, int noOfOrbs);
         public abstract void Dispose();

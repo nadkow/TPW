@@ -9,17 +9,17 @@ using Data;
 
 namespace Logic
 {
-    internal class LogicOrb : ILogicOrb
+    internal class LogicOrb : ILogicOrb, INotifyPropertyChanged
     {
         //private double x;
         //private double y;
         //private int d;
-        private Orb orb;
-        public event PropertyChangedEventHandler? PropertyChanged;
+        private IOrb orb;
+        public  event PropertyChangedEventHandler? PropertyChanged;
         public double X { get => orb.X; set => orb.X = value; }
         public double Y { get => orb.Y; set => orb.Y = value; }
         public int D { get => orb.D; set => orb.D = value; }
-        public LogicOrb(Orb orb)
+        public LogicOrb(IOrb orb)
         {
             //this.x = orb.X;
             //this.y = orb.Y;

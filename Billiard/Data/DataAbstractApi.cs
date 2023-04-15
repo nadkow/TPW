@@ -13,7 +13,7 @@ namespace Data
             return new DataApi();
         }
 
-        public abstract Orb CreateOrb(int tableWidth, int tableHeight);
-        public abstract void Dispose(Orb orb);
+        public abstract IOrb CreateOrb(int tableWidth, int tableHeight);
+        public abstract void Dispose(IOrb orb);
     }
 }

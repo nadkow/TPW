@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Data
 {
-    public class Orb : IOrb, INotifyPropertyChanged
+    internal class Orb : IOrb, INotifyPropertyChanged
     {
         private double x;
         private double y;
@@ -21,6 +21,7 @@ namespace Data
         {
             this.x = x;
             this.y = y;
+            this.D = d;
             ChangePositionTimer = new Timer(ChangePosition, null, 0, 100);
         }
 
