@@ -11,9 +11,6 @@ namespace Logic
 {
     internal class LogicOrb : ILogicOrb, INotifyPropertyChanged
     {
-        //private double x;
-        //private double y;
-        //private int d;
         private IOrb orb;
         public event PropertyChangedEventHandler? PropertyChanged;
         public double X { get => orb.X; set => orb.X = value; }
@@ -21,18 +18,13 @@ namespace Logic
         public int D { get => orb.D; set => orb.D = value; }
         public LogicOrb(IOrb orb)
         {
-            //this.x = orb.X;
-            //this.y = orb.Y;
-            //this.d = orb.D;
             this.orb = orb;
             orb.PropertyChanged += Update;
         }
        
         public void Update(object sender, PropertyChangedEventArgs e)
         {
-            //this.x = orb.X;
-            //this.y = orb.Y;
-            OnPropertyChanged();
+            //OnPropertyChanged();
         }
         protected void OnPropertyChanged([CallerMemberName] string name = "")
         {
