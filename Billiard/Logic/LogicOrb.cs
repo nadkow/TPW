@@ -22,9 +22,17 @@ namespace Logic
             orb.PropertyChanged += Update;
         }
        
-        public void Update(object sender, PropertyChangedEventArgs e)
+        private void Update(object sender, PropertyChangedEventArgs e)
         {
-            //OnPropertyChanged();
+            IOrb orb = (IOrb)sender;
+            X = orb.X;
+            Y = orb.Y;
+            OnPropertyChanged();
+        }
+
+        public void Dispose()
+        {
+            orb.DisposeTimer();
         }
         protected void OnPropertyChanged([CallerMemberName] string name = "")
         {

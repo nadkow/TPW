@@ -14,7 +14,6 @@ namespace Logic
         private DataAbstractApi dataApi;
         private int width;
         private int height;
-        private readonly List<IOrb> orbs = new List<IOrb>();
         private readonly List<ILogicOrb> logicOrbs = new List<ILogicOrb>();
 
 
@@ -26,10 +25,6 @@ namespace Logic
             else { dataApi = DataAbstractApi.CreateApi(); }
         }
 
-        public override List<IOrb> GetOrbs()
-        {
-            return orbs;
-        }
         public override List<ILogicOrb> GetLogicOrbs()
         {
             return logicOrbs;
@@ -42,12 +37,11 @@ namespace Logic
             for (int i = 0; i < noOfOrbs; i++)
             {
                 IOrb newOrb = dataApi.CreateOrb(width, height);
-                orbs.Add(newOrb);
                 ILogicOrb newLogicOrb = new LogicOrb(newOrb);
                 logicOrbs.Add(newLogicOrb);
 
             }
-            foreach (IOrb orb in orbs)
+            foreach (ILogicOrb orb in logicOrbs)
             {
                 orb.PropertyChanged += OrbPosChanged;
             }
@@ -56,9 +50,9 @@ namespace Logic
 
         public override void Dispose()
         {
-            foreach (IOrb orb in orbs)
+            foreach (ILogicOrb orb in logicOrbs)
             {
-                dataApi.Dispose(orb);
+                orb.Dispose();
             }
 
         }
@@ -66,10 +60,10 @@ namespace Logic
         private void OrbPosChanged(object sender, PropertyChangedEventArgs e)
         {
                 // stol pilnuje czy kule znajduja sie wewnatrz niego
-                IOrb orb = (IOrb)sender;
+                ILogicOrb orb = (ILogicOrb)sender;
                 if (orb.X > width || orb.Y > height || orb.X < 0 || orb.Y < 0)
                 {
-                    orb.DisposeTimer();
+                    orb.Dispose();
                 }
         }
 

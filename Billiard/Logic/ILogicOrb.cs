@@ -17,5 +17,6 @@ namespace Logic
         public double X { get; set; }
         public double Y { get; set; }
         public int D { get; set; }
+        public void Dispose();
     }
 }
