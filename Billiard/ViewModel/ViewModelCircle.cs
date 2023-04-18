@@ -1,44 +1,43 @@
-﻿using Logic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Data;
+using Model;
 
-namespace Model
+namespace ViewModel
 {
-    public class Circle : ICircle
+    internal class ViewModelCircle :IViewModelCircle
     {
-        // wizualna reprezentacja Orb
         private double x;
         private double y;
         private int diameter;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public Circle(ILogicOrb orb)
-        {
-            diameter = orb.D;
-            x = orb.X - 5;
-            y = orb.Y - 5; 
-            orb.PropertyChanged += Update;
-
-        }
         public double X { get => x; set { x = value; OnPropertyChanged(nameof(X)); } }
         public double Y { get => y; set { y = value; OnPropertyChanged(nameof(Y)); } }
         public int D { get => diameter; set => diameter = value; }
+        public ViewModelCircle(ICircle circle) {
+            x = circle.X;
+            y = circle.Y;
+            diameter = circle.D;
+            circle.PropertyChanged += Update;
+        }
 
         private void Update(object sender, PropertyChangedEventArgs e)
         {
-                ILogicOrb orb = (ILogicOrb)sender;
-                X = orb.X - 5;
-                Y = orb.Y - 5;
+            ICircle circle = (ICircle)sender;
+            X = circle.X;
+            Y = circle.Y;
+            OnPropertyChanged();
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        protected void OnPropertyChanged([CallerMemberName] string name = "")
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }

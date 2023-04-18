@@ -24,7 +24,7 @@ namespace Model
             return new ModelApi(LogicApi);
         }
 
-        public abstract ObservableCollection<Circle> GetBalls();
+        public abstract ObservableCollection<ICircle> GetBalls();
         public abstract void Start(int noOfOrbs);
         public abstract void Stop();
     }

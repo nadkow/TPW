@@ -63,7 +63,7 @@ namespace Logic
                 ILogicOrb orb = (ILogicOrb)sender;
                 if (orb.X > width || orb.Y > height || orb.X < 0 || orb.Y < 0)
                 {
-                    orb.Dispose();
+                    orb.Dispose(); //event aktualizacja kolekcji
                 }
         }
 

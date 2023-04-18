@@ -8,7 +8,7 @@ namespace ViewModel
     public class ViewModelApi : INotifyPropertyChanged
     {
         private ModelAbstractApi modelApi;
-        private ObservableCollection<Circle> balls = new ObservableCollection<Circle>();
+        private ObservableCollection<IViewModelCircle> balls = new ObservableCollection<IViewModelCircle>();
         public StartButtonCommand ButtonCommand {get; set;}
         private int _ilosc;
 
@@ -22,7 +22,7 @@ namespace ViewModel
             }
         }
 
-        public ObservableCollection<Circle> Balls { get => balls; set => balls = value; }
+        public ObservableCollection<IViewModelCircle> Balls { get => balls; set => balls = value; }
 
         public ViewModelApi() : this(null) { }
         public ViewModelApi(ModelAbstractApi api)
@@ -35,7 +35,11 @@ namespace ViewModel
         public void Start()
         {
             this.modelApi.Start(_ilosc);
-            this.balls = modelApi.GetBalls();
+            foreach(ICircle circle in modelApi.GetBalls())
+            {
+                IViewModelCircle viewModelCircle = new ViewModelCircle(circle);
+                balls.Add(viewModelCircle);
+            }
             OnPropertyChanged(nameof(Balls));
         }
 

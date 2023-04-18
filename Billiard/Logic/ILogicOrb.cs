@@ -10,10 +10,6 @@ namespace Logic
 {
     public interface ILogicOrb : INotifyPropertyChanged
     {
-        public ILogicOrb createOrb(IOrb orb)
-        {
-            return new LogicOrb(orb);
-        }
         public double X { get; set; }
         public double Y { get; set; }
         public int D { get; set; }

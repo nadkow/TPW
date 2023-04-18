@@ -9,16 +9,22 @@ using Data;
 
 namespace Logic
 {
-    internal class LogicOrb : ILogicOrb, INotifyPropertyChanged
+    internal class LogicOrb : ILogicOrb
     {
-        private IOrb orb;
+        IOrb orb;
+        private double x;
+        private double y;
+        private int diameter;
         public event PropertyChangedEventHandler? PropertyChanged;
-        public double X { get => orb.X; set => orb.X = value; }
-        public double Y { get => orb.Y; set => orb.Y = value; }
-        public int D { get => orb.D; set => orb.D = value; }
+        public double X { get => x; set => x = value; }
+        public double Y { get => y; set => y = value; }
+        public int D { get => diameter; set => diameter = value; }
         public LogicOrb(IOrb orb)
         {
             this.orb = orb;
+            x = orb.X;
+            y = orb.Y;
+            diameter = orb.D;
             orb.PropertyChanged += Update;
         }
        

@@ -8,10 +8,10 @@ namespace Model
     public class ModelApi : ModelAbstractApi
     {
         private LogicAbstractApi logicApi;
-        private ObservableCollection<Circle> balls = new ObservableCollection<Circle>();
+        private ObservableCollection<ICircle> balls = new ObservableCollection<ICircle>();
         public override event PropertyChangedEventHandler? PropertyChanged;
 
-        public override ObservableCollection<Circle> GetBalls() { return balls; }
+        public override ObservableCollection<ICircle> GetBalls() { return balls; }
 
         public ModelApi(LogicAbstractApi api = null)
         {
@@ -24,7 +24,8 @@ namespace Model
             balls.Clear();
             foreach(ILogicOrb orb in this.logicApi.GetLogicOrbs())
             {
-                balls.Add(new Circle(orb));
+                ICircle circle = new Circle(orb);
+                balls.Add(circle);
             }
         }
 
