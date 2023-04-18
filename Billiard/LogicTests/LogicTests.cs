@@ -60,6 +60,7 @@ namespace LogicTests
         [Test]
         public void LogicStopTest()
         {
+            LogicApi.Dispose();
             LogicApi.Start(100, 100, 10);
             Assert.That(10, Is.EqualTo(LogicApi.GetLogicOrbs().Count));
             LogicApi.Dispose();
