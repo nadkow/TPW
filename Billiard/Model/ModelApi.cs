@@ -5,7 +5,7 @@ using Logic;
 
 namespace Model
 {
-    public class ModelApi : ModelAbstractApi
+    internal class ModelApi : ModelAbstractApi
     {
         private LogicAbstractApi logicApi;
         private ObservableCollection<ICircle> balls = new ObservableCollection<ICircle>();

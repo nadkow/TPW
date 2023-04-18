@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Circle : ICircle
+    internal class Circle : ICircle
     {
         // wizualna reprezentacja Orb
         private double x;
