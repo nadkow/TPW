@@ -11,8 +11,8 @@ namespace Data
         private Timer ChangePositionTimer;
         private Random rnd = new Random();
 
-        public double X { get => x; set { x = value; OnPropertyChanged(); } }
-        public double Y { get => y; set { y = value; OnPropertyChanged(); } }
+        public double X { get => x; set => x = value; }
+        public double Y { get => y; set => y = value; }
         public int D { get => d; set => d = value; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
