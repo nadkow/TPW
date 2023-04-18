@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Data;
 using Logic;
 
-namespace TestProject
+namespace LogicTests
 {
     [TestFixture]
     internal class LogicTests

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Data;
 
-namespace TestProject
+namespace DataTests
 {
     [TestFixture]
     internal class DataTests
