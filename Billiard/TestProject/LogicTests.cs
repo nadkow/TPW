@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,31 +12,39 @@ namespace TestProject
     [TestFixture]
     internal class LogicTests
     {
+        sealed class MockOrb : IOrb
+        {
+            private double x;
+            private double y;
+            private int d = 10;
+            public MockOrb(double x, double y)
+            {
+                this.x = x;
+                this.y = y;
+            }
+
+            public double X { get => x; set => X = value; }
+            public double Y { get => y; set => Y = value; }
+            public int D { get => d; set => D = value; }
+
+            public event PropertyChangedEventHandler? PropertyChanged;
+
+            public void DisposeTimer()
+            {
+
+            }
+        }
+
         sealed class MockDataApi : DataAbstractApi
         {
-            private List<Orb> orbs = new List<Orb>();
-
-            public override void Dispose()
+            public override void Dispose(IOrb orb)
             {
-                foreach (Orb orb in orbs)
-                {
-                    orb.DisposeTimer();
-                }
-                orbs.Clear();
+                orb.DisposeTimer();
             }
 
-            public override List<Orb> getOrbs()
+            public override IOrb CreateOrb(int tableWidth, int tableHeight)
             {
-                return orbs;
-            }
-
-            public override void Start(int tableWidth, int tableHeight, int numberOfOrbs)
-            {
-                for (int i = 0; i < numberOfOrbs; i++)
-                {
-                    Orb newOrb = new Orb(i, i);
-                    orbs.Add(newOrb);
-                }
+                return new MockOrb(1, 1);
             }
         }
 
@@ -45,15 +54,16 @@ namespace TestProject
         public void LogicStartTest()
         {
             LogicApi.Start(100, 100, 10);
-            Assert.IsNotNull(LogicApi.GetOrbs());
-            Assert.That(10, Is.EqualTo(LogicApi.GetOrbs().Count));
+            Assert.IsNotNull(LogicApi.GetLogicOrbs());
+            Assert.That(10, Is.EqualTo(LogicApi.GetLogicOrbs().Count));
         }
         [Test]
         public void LogicStopTest()
         {
-            Assert.That(10, Is.EqualTo(LogicApi.GetOrbs().Count));
+            LogicApi.Start(100, 100, 10);
+            Assert.That(10, Is.EqualTo(LogicApi.GetLogicOrbs().Count));
             LogicApi.Dispose();
-            Assert.That(0, Is.EqualTo(LogicApi.GetOrbs().Count));
+            Assert.That(0, Is.EqualTo(LogicApi.GetLogicOrbs().Count));
 
         }
 

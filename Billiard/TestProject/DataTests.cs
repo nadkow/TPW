@@ -13,12 +13,9 @@ namespace TestProject
     {
         private DataAbstractApi DataApi = DataAbstractApi.CreateApi();
         [Test]
-        public void DataStartTest() 
+        public void DataCreateOrbTest() 
         {
-            DataApi.Start(100, 100, 10);
-            Assert.IsNotNull(DataApi.getOrbs());
-            Assert.That(DataApi.getOrbs().Count, Is.EqualTo(10));
-            Orb orb = DataApi.getOrbs().First();
+            IOrb orb = DataApi.CreateOrb(100, 100);
             Assert.That(orb.Y, Is.AtMost(100));
             Assert.That(orb.X, Is.AtMost(100));
             Assert.That(orb.Y, Is.AtLeast(0));
@@ -27,17 +24,23 @@ namespace TestProject
 
         [Test] public void DataDisposeTest()
         {
-            DataApi.Dispose();
-            Assert.That(DataApi.getOrbs().Count, Is.EqualTo(0));
+            IOrb orb = DataApi.CreateOrb(100, 100);
+            DataApi.Dispose(orb);
+            double first_x = orb.X;
+            double first_y = orb.Y;
+            // sprawdzenie czy x i y (nie) zmieniaja sie w czasie
+            Assert.That(orb.X, Is.EqualTo(first_x));
+            Assert.That(orb.Y, Is.EqualTo(first_y));
+
         }
 
         [Test]
         public void OrbEventTest()
         {
             bool wasRaise = false;
-            Orb orb = new(10, 10);
+            IOrb orb = DataApi.CreateOrb(100, 100);
             orb.PropertyChanged += (s, e) => { wasRaise = true; };
-            orb.ChangePosition(null);
+            System.Threading.Thread.Sleep(500); // trzeba poczekac bo timer wywoluje metode co ok. 100ms
             Assert.That(wasRaise, Is.EqualTo(true));
         }
     }

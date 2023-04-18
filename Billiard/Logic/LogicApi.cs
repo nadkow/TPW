@@ -54,6 +54,7 @@ namespace Logic
             {
                 orb.Dispose();
             }
+            logicOrbs.Clear();
 
         }
 
