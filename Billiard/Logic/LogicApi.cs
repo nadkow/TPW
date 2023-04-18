@@ -63,13 +63,15 @@ namespace Logic
                 ILogicOrb orb = (ILogicOrb)sender;
                 if (orb.X > width || orb.Y > height || orb.X < 0 || orb.Y < 0)
                 {
-                    orb.Dispose(); //event aktualizacja kolekcji
+                    orb.Y = height / 2;
+                    orb.X = width / 2;
                 }
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = "")
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            // ta metoda na razie nie jest wywolywana ale zostawiamy do uzycia w przyszlosci
         }
     }
 }
