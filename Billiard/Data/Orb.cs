@@ -7,13 +7,24 @@ namespace Data
     {
         private double x;
         private double y;
-        private int d = 10; 
+        private int d = 10;
+        private double xspeed;
+        private double yspeed;
+        private int period = 100;
         private Timer ChangePositionTimer;
         private Random rnd = new Random();
 
         public double X { get => x;}
         public double Y { get => y;}
         public int D { get => d;}
+        public double XSpeed { get => xspeed;}
+        public double YSpeed { get => yspeed;}
+        public void SetSpeed(double x, double y)
+        {
+            xspeed = x;
+            yspeed = y;
+            CalculatePeriod();
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -21,14 +32,28 @@ namespace Data
         {
             this.x = x;
             this.y = y;
-            ChangePositionTimer = new Timer(ChangePosition, null, 0, 100);
+            // losowa predkosc poczatkowa
+            xspeed = rnd.NextDouble() * 4 - 2;
+            yspeed = rnd.NextDouble() * 4 - 2;
+            CalculatePeriod();
+        }
+
+        private void CalculatePeriod()
+        {
+            // TODO dostosowanie period (czas odswiezania) do predkosci
+            // Timer.Change(period, period)
         }
 
         private void ChangePosition(object? state) //zeby mozna bylo uzyc changePosition w Timerze musi mieć argument object
         {   
-            x += rnd.NextDouble()*10-5;
-            y += rnd.NextDouble()*10-5;
+            x += xspeed;
+            y += yspeed;
             OnPropertyChanged();
+        }
+
+        public void Start()
+        {
+            ChangePositionTimer = new Timer(ChangePosition, null, 0, period);
         }
 
         public void DisposeTimer()

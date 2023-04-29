@@ -19,6 +19,13 @@ namespace Logic
         public double X { get => x;}
         public double Y { get => y;}
         public int D { get => diameter;}
+        public double XSpeed { get => orb.XSpeed;}
+        public double YSpeed { get => orb.YSpeed;}
+        public void SetSpeed(double x, double y)
+        {
+            orb.SetSpeed(x, y);
+        }
+
         public LogicOrb(IOrb orb)
         {
             this.orb = orb;
@@ -26,6 +33,11 @@ namespace Logic
             y = orb.Y;
             diameter = orb.D;
             orb.PropertyChanged += Update;
+        }
+
+        public void Start()
+        {
+            orb.Start();
         }
        
         private void Update(object sender, PropertyChangedEventArgs e)

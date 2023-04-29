@@ -13,6 +13,10 @@ namespace Logic
         public double X { get;}
         public double Y { get;}
         public int D { get;}
+        public double XSpeed { get; }
+        public double YSpeed { get; }
+        public void SetSpeed(double x, double y);
+        public void Start();
         public void Dispose();
     }
 }
