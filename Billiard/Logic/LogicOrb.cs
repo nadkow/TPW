@@ -16,9 +16,9 @@ namespace Logic
         private double y;
         private int diameter;
         public event PropertyChangedEventHandler? PropertyChanged;
-        public double X { get => x; set { x = value; orb.X = x; } }
-        public double Y { get => y; set { y = value; orb.Y = y; } }
-        public int D { get => diameter; set => diameter = value; }
+        public double X { get => x;}
+        public double Y { get => y;}
+        public int D { get => diameter;}
         public LogicOrb(IOrb orb)
         {
             this.orb = orb;
@@ -31,8 +31,8 @@ namespace Logic
         private void Update(object sender, PropertyChangedEventArgs e)
         {
             IOrb orb = (IOrb)sender;
-            X = orb.X;
-            Y = orb.Y;
+            x = orb.X;
+            y = orb.Y;
             OnPropertyChanged();
         }
 

@@ -11,9 +11,9 @@ namespace Data
         private Timer ChangePositionTimer;
         private Random rnd = new Random();
 
-        public double X { get => x; set => x = value; }
-        public double Y { get => y; set => y = value; }
-        public int D { get => d; set => d = value; }
+        public double X { get => x;}
+        public double Y { get => y;}
+        public int D { get => d;}
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -24,7 +24,7 @@ namespace Data
             ChangePositionTimer = new Timer(ChangePosition, null, 0, 100);
         }
 
-        public void ChangePosition(object? state) //zeby mozna bylo uzyc changePosition w Timerze musi mieć argument object
+        private void ChangePosition(object? state) //zeby mozna bylo uzyc changePosition w Timerze musi mieć argument object
         {   
             x += rnd.NextDouble()*10-5;
             y += rnd.NextDouble()*10-5;

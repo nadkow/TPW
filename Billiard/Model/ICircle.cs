@@ -11,8 +11,8 @@ namespace Model
 {
     public interface ICircle : INotifyPropertyChanged
     {
-        public double X { get; set; }
-        public double Y { get; set; }
-        public int D { get; set; }
+        public double X { get; }
+        public double Y { get; }
+        public int D { get; }
     }
 }

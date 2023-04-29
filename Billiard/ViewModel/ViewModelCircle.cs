@@ -34,7 +34,6 @@ namespace ViewModel
             ICircle circle = (ICircle)sender;
             X = circle.X;
             Y = circle.Y;
-            OnPropertyChanged();
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = "")

@@ -27,18 +27,19 @@ namespace Model
             orb.PropertyChanged += Update;
 
         }
-        public double X { get => x; set { x = value; OnPropertyChanged(nameof(X)); } }
-        public double Y { get => y; set { y = value; OnPropertyChanged(nameof(Y)); } }
-        public int D { get => diameter; set => diameter = value; }
+        public double X { get => x;}
+        public double Y { get => y;}
+        public int D { get => diameter;}
 
         private void Update(object sender, PropertyChangedEventArgs e)
         {
-                ILogicOrb orb = (ILogicOrb)sender;
-                X = orb.X - 5;
-                Y = orb.Y - 5;
+            ILogicOrb orb = (ILogicOrb)sender;
+            x = orb.X - 5;
+            y = orb.Y - 5;
+            OnPropertyChanged();
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        protected void OnPropertyChanged([CallerMemberName] string name = "")
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }

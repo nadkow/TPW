@@ -62,11 +62,6 @@ namespace Logic
         {
                 // stol pilnuje czy kule znajduja sie wewnatrz niego
                 ILogicOrb orb = (ILogicOrb)sender;
-                if (orb.X > width || orb.Y > height || orb.X < 0 || orb.Y < 0)
-                {
-                    orb.Y = height / 2;
-                    orb.X = width / 2;
-                }
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = "")
