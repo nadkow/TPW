@@ -19,5 +19,6 @@ namespace Logic
         public void Start();
         public void Dispose();
         public void Collision();
+        public void CollisionBorder(String axis);
     }
 }

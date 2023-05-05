@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using Data;
 
 namespace Logic
@@ -61,11 +61,11 @@ namespace Logic
         {
             // stol pilnuje czy kule znajduja sie wewnatrz niego
             ILogicOrb orb = (ILogicOrb)sender;
-            checkCollisionWithOrbs(orb); //to i nizej chyba bedzie sekcja krytyczna
-            checkCollisionWithBorder(orb);
+            CheckCollisionWithOrbs(orb); //to i nizej chyba bedzie sekcja krytyczna
+            CheckCollisionWithBorder(orb);
         }
 
-        private void checkCollisionWithOrbs(ILogicOrb orb)
+        private void CheckCollisionWithOrbs(ILogicOrb orb)
         {
             foreach(var oneOfOrbs in logicOrbs) {
                 if(oneOfOrbs != orb)
@@ -79,11 +79,15 @@ namespace Logic
             }
         }
 
-        private void checkCollisionWithBorder(ILogicOrb orb)
+        private void CheckCollisionWithBorder(ILogicOrb orb)
         {
-            if (orb.X > width || orb.Y > height || orb.X < 0 || orb.Y < 0)
+            if (orb.Y > height-5 || orb.Y < 5)
             {
-                orb.Collision();
+                orb.CollisionBorder("y");
+            }
+            else if(orb.X > width-5 || orb.X < 5)
+            {
+                orb.CollisionBorder("x");
             }
         }
         protected void OnPropertyChanged([CallerMemberName] string name = "")

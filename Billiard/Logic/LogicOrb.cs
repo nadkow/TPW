@@ -57,6 +57,11 @@ namespace Logic
         {
             orb.Collision();
         }
+
+        public void CollisionBorder(String axis)
+        {
+            orb.CollisionBorder(axis);
+        }
         protected void OnPropertyChanged([CallerMemberName] string name = "")
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

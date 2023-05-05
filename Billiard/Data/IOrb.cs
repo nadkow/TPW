@@ -19,5 +19,6 @@ namespace Data
         public void Start();
         public void DisposeTimer();
         public void Collision();
+        public void CollisionBorder(String axis);
     }
 }

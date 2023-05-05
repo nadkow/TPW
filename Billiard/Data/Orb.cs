@@ -55,10 +55,24 @@ namespace Data
         
         public void Collision()
         {
-            DisposeTimer();
+            //TODO zaimplementowac zachowanie po kolizji
+            //DisposeTimer();
             Console.WriteLine("kolizja");
         }
 
+        public void CollisionBorder(String axis)
+        {
+            if(axis == "x")
+            {
+                xspeed = -xspeed;
+                CalculatePeriod();
+            }
+            else if (axis == "y")
+            {
+                yspeed = -yspeed;
+                CalculatePeriod();
+            }
+        }
         public void Start()
         {
             ChangePositionTimer = new Timer(ChangePosition, null, 0, period);
