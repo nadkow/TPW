@@ -16,7 +16,6 @@ namespace Logic
         private int height;
         private readonly List<ILogicOrb> logicOrbs = new List<ILogicOrb>();
 
-
         public override event PropertyChangedEventHandler? PropertyChanged;
 
         public LogicApi(DataAbstractApi api = null)
@@ -60,10 +59,33 @@ namespace Logic
 
         private void OrbPosChanged(object sender, PropertyChangedEventArgs e)
         {
-                // stol pilnuje czy kule znajduja sie wewnatrz niego
-                ILogicOrb orb = (ILogicOrb)sender;
+            // stol pilnuje czy kule znajduja sie wewnatrz niego
+            ILogicOrb orb = (ILogicOrb)sender;
+            checkCollisionWithOrbs(orb); //to i nizej chyba bedzie sekcja krytyczna
+            checkCollisionWithBorder(orb);
         }
 
+        private void checkCollisionWithOrbs(ILogicOrb orb)
+        {
+            foreach(var oneOfOrbs in logicOrbs) {
+                if(oneOfOrbs != orb)
+                {
+                    if(Math.Abs(orb.Y - oneOfOrbs.Y) <= 10 || Math.Abs(orb.X - oneOfOrbs.X) <= 10)
+                    {
+                        orb.Collision();
+                        oneOfOrbs.Collision();
+                    }
+                }
+            }
+        }
+
+        private void checkCollisionWithBorder(ILogicOrb orb)
+        {
+            if (orb.X > width || orb.Y > height || orb.X < 0 || orb.Y < 0)
+            {
+                orb.Collision();
+            }
+        }
         protected void OnPropertyChanged([CallerMemberName] string name = "")
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

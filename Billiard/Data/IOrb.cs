@@ -18,5 +18,6 @@ namespace Data
         public void SetSpeed(double x, double y);
         public void Start();
         public void DisposeTimer();
+        public void Collision();
     }
 }

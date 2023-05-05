@@ -52,6 +52,11 @@ namespace Logic
         {
             orb.DisposeTimer();
         }
+
+        public void Collision()
+        {
+            orb.Collision();
+        }
         protected void OnPropertyChanged([CallerMemberName] string name = "")
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

@@ -35,13 +35,15 @@ namespace Data
             // losowa predkosc poczatkowa
             xspeed = rnd.NextDouble() * 4 - 2;
             yspeed = rnd.NextDouble() * 4 - 2;
+            Start();
             CalculatePeriod();
         }
 
         private void CalculatePeriod()
         {
-            // TODO dostosowanie period (czas odswiezania) do predkosci
-            // Timer.Change(period, period)
+            double v = Math.Sqrt((yspeed * yspeed) + (xspeed * xspeed));
+            period = (int)(100 / v);
+            ChangePositionTimer.Change(0, period);
         }
 
         private void ChangePosition(object? state) //zeby mozna bylo uzyc changePosition w Timerze musi mieć argument object
@@ -49,6 +51,12 @@ namespace Data
             x += xspeed;
             y += yspeed;
             OnPropertyChanged();
+        }
+        
+        public void Collision()
+        {
+            DisposeTimer();
+            Console.WriteLine("kolizja");
         }
 
         public void Start()
