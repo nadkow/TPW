@@ -70,7 +70,7 @@ namespace Logic
             foreach(var oneOfOrbs in logicOrbs) {
                 if(oneOfOrbs != orb)
                 {
-                    if(Math.Abs(orb.Y - oneOfOrbs.Y) <= 10 || Math.Abs(orb.X - oneOfOrbs.X) <= 10)
+                    if(Math.Abs(orb.Y - oneOfOrbs.Y) <= 10 && Math.Abs(orb.X - oneOfOrbs.X) <= 10)
                     {
                         orb.Collision();
                         oneOfOrbs.Collision();

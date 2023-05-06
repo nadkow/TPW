@@ -16,7 +16,7 @@ namespace Data
         public double XSpeed { get;}
         public double YSpeed { get;}
         public void SetSpeed(double x, double y);
-        public void Start();
+        public Task Start();
         public void DisposeTimer();
         public void Collision();
         public void CollisionBorder(String axis);

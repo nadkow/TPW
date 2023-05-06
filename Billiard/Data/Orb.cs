@@ -43,20 +43,11 @@ namespace Data
         {
             double v = Math.Sqrt((yspeed * yspeed) + (xspeed * xspeed));
             period = (int)(100 / v);
-            ChangePositionTimer.Change(0, period);
         }
 
-        private void ChangePosition(object? state) //zeby mozna bylo uzyc changePosition w Timerze musi mieć argument object
-        {   
-            x += xspeed;
-            y += yspeed;
-            OnPropertyChanged();
-        }
-        
         public void Collision()
         {
             //TODO zaimplementowac zachowanie po kolizji
-            //DisposeTimer();
             Console.WriteLine("kolizja");
         }
 
@@ -73,9 +64,15 @@ namespace Data
                 CalculatePeriod();
             }
         }
-        public void Start()
+        public async Task Start()
         {
-            ChangePositionTimer = new Timer(ChangePosition, null, 0, period);
+            while (true) //to zamiast funkcji ChangePosition i Timera
+            {
+                x += xspeed;
+                y += yspeed;
+                OnPropertyChanged();
+                await Task.Delay(period);
+            }
         }
 
         public void DisposeTimer()
