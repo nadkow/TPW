@@ -11,6 +11,8 @@ namespace Logic
 {
     internal class LogicApi : LogicAbstractApi
     {
+        Semaphore semaphoreOrb = new Semaphore(1, 1);
+        Semaphore semaphoreBorder = new Semaphore(1, 1);
         private DataAbstractApi dataApi;
         private int width;
         private int height;
@@ -59,21 +61,24 @@ namespace Logic
 
         private void OrbPosChanged(object sender, PropertyChangedEventArgs e)
         {
-            // stol pilnuje czy kule znajduja sie wewnatrz niego
             ILogicOrb orb = (ILogicOrb)sender;
-            CheckCollisionWithOrbs(orb); //to i nizej chyba bedzie sekcja krytyczna
+            semaphoreOrb.WaitOne();
+            CheckCollisionWithOrbs(orb);
+            semaphoreOrb.Release(1);
+            semaphoreBorder.WaitOne();
             CheckCollisionWithBorder(orb);
+            semaphoreBorder.Release(1);
         }
 
         private void CheckCollisionWithOrbs(ILogicOrb orb)
         {
             foreach(var oneOfOrbs in logicOrbs) {
-                if(oneOfOrbs != orb)
+                if (oneOfOrbs != orb)
                 {
-                    if(Math.Abs(orb.Y - oneOfOrbs.Y) <= 10 && Math.Abs(orb.X - oneOfOrbs.X) <= 10)
+                    double distance = Math.Sqrt(Math.Pow(orb.X - oneOfOrbs.X, 2) + Math.Pow(orb.Y - oneOfOrbs.Y, 2));
+                    if (distance <= 10)
                     {
-                        orb.Collision();
-                        oneOfOrbs.Collision();
+                        orb.Collision(oneOfOrbs);
                     }
                 }
             }

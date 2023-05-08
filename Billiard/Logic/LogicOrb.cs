@@ -25,7 +25,7 @@ namespace Logic
         {
             orb.SetSpeed(x, y);
         }
-
+        public IOrb GetOrb() { return orb; }
         public LogicOrb(IOrb orb)
         {
             this.orb = orb;
@@ -53,9 +53,9 @@ namespace Logic
             orb.DisposeTimer();
         }
 
-        public void Collision()
+        public void Collision(ILogicOrb CollidedOrb)
         {
-            orb.Collision();
+            orb.Collision(CollidedOrb.GetOrb());
         }
 
         public void CollisionBorder(String axis)

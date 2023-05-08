@@ -13,12 +13,14 @@ namespace Data
         public double X { get;}
         public double Y { get;}
         public int D { get;}
+        public int M { get; }
         public double XSpeed { get;}
         public double YSpeed { get;}
         public void SetSpeed(double x, double y);
         public Task Start();
         public void DisposeTimer();
-        public void Collision();
+        public void Collision(IOrb orb); //przekazujemy orba z ktorym sie zderzyl
         public void CollisionBorder(String axis);
+        public void ChangeRoute(double xv, double yv);
     }
 }

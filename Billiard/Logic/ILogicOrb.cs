@@ -15,10 +15,11 @@ namespace Logic
         public int D { get;}
         public double XSpeed { get; }
         public double YSpeed { get; }
+        public IOrb GetOrb();
         public void SetSpeed(double x, double y);
         public void Start();
         public void Dispose();
-        public void Collision();
+        public void Collision(ILogicOrb CollidedOrb);
         public void CollisionBorder(String axis);
     }
 }

@@ -8,6 +8,7 @@ namespace Data
         private double x;
         private double y;
         private int d = 10;
+        private int m = 5;
         private double xspeed;
         private double yspeed;
         private int period = 100;
@@ -17,6 +18,7 @@ namespace Data
         public double X { get => x;}
         public double Y { get => y;}
         public int D { get => d;}
+        public int M { get => m; }
         public double XSpeed { get => xspeed;}
         public double YSpeed { get => yspeed;}
         public void SetSpeed(double x, double y)
@@ -45,10 +47,19 @@ namespace Data
             period = (int)(100 / v);
         }
 
-        public void Collision()
+        public void Collision(IOrb orb)
         {
-            //TODO zaimplementowac zachowanie po kolizji
-            Console.WriteLine("kolizja");
+            double xv = xspeed;
+            double yv = yspeed;
+            ChangeRoute(orb.XSpeed, orb.YSpeed);
+            orb.ChangeRoute(xv,yv);
+        } 
+
+        public void ChangeRoute(double xv, double yv)
+        {
+            xspeed = xv;
+            yspeed = yv;
+            CalculatePeriod();
         }
 
         public void CollisionBorder(String axis)
