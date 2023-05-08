@@ -20,7 +20,8 @@ namespace Data
         public Task Start();
         public void DisposeTimer();
         public void Collision(IOrb orb); //przekazujemy orba z ktorym sie zderzyl
-        public void CollisionBorder(String axis);
+        public void CollisionBorderX();
+        public void CollisionBorderY();
         public void ChangeRoute(double xv, double yv);
     }
 }

@@ -58,10 +58,15 @@ namespace Logic
             orb.Collision(CollidedOrb.GetOrb());
         }
 
-        public void CollisionBorder(String axis)
+        public void CollisionBorderX()
         {
-            orb.CollisionBorder(axis);
+            orb.CollisionBorderX();
         }
+        public void CollisionBorderY()
+        {
+            orb.CollisionBorderY();
+        }
+
         protected void OnPropertyChanged([CallerMemberName] string name = "")
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

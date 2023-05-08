@@ -10,9 +10,9 @@ namespace Logic
 {
     public interface ILogicOrb : INotifyPropertyChanged
     {
-        public double X { get;}
-        public double Y { get;}
-        public int D { get;}
+        public double X { get; }
+        public double Y { get; }
+        public int D { get; }
         public double XSpeed { get; }
         public double YSpeed { get; }
         public IOrb GetOrb();
@@ -20,6 +20,7 @@ namespace Logic
         public void Start();
         public void Dispose();
         public void Collision(ILogicOrb CollidedOrb);
-        public void CollisionBorder(String axis);
+        public void CollisionBorderX();
+        public void CollisionBorderY();
     }
 }

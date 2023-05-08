@@ -62,19 +62,16 @@ namespace Data
             CalculatePeriod();
         }
 
-        public void CollisionBorder(String axis)
+        public void CollisionBorderX()
         {
-            if(axis == "x")
-            {
-                xspeed = -xspeed;
-                CalculatePeriod();
-            }
-            else if (axis == "y")
-            {
-                yspeed = -yspeed;
-                CalculatePeriod();
-            }
+            xspeed = -xspeed;
         }
+
+        public void CollisionBorderY()
+        {
+            yspeed = -yspeed;
+        }
+
         public async Task Start()
         {
             while (true) //to zamiast funkcji ChangePosition i Timera

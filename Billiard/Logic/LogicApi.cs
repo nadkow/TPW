@@ -86,13 +86,13 @@ namespace Logic
 
         private void CheckCollisionWithBorder(ILogicOrb orb)
         {
-            if (orb.Y > height-5 || orb.Y < 5)
+            if (orb.Y >= height-5 || orb.Y <= 5)
             {
-                orb.CollisionBorder("y");
+                orb.CollisionBorderY();
             }
-            else if(orb.X > width-5 || orb.X < 5)
+            else if(orb.X >= width-5 || orb.X <= 5)
             {
-                orb.CollisionBorder("x");
+                orb.CollisionBorderX();
             }
         }
         protected void OnPropertyChanged([CallerMemberName] string name = "")
