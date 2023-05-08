@@ -35,8 +35,8 @@ namespace Data
             this.x = x;
             this.y = y;
             // losowa predkosc poczatkowa
-            xspeed = rnd.NextDouble() * 4 - 2;
-            yspeed = rnd.NextDouble() * 4 - 2;
+            xspeed = rnd.NextDouble() * 6 - 3;
+            yspeed = rnd.NextDouble() * 6 - 3;
             Start();
             CalculatePeriod();
         }

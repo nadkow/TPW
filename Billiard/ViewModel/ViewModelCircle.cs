@@ -23,8 +23,8 @@ namespace ViewModel
         public double Y { get => y; set { y = value; OnPropertyChanged(nameof(Y)); } }
         public int D { get => diameter; set => diameter = value; }
         public ViewModelCircle(ICircle circle) {
-            x = circle.X;
-            y = circle.Y;
+            x = circle.X - diameter/2;
+            y = circle.Y - diameter/2;
             diameter = circle.D;
             circle.PropertyChanged += Update;
         }
@@ -32,8 +32,8 @@ namespace ViewModel
         private void Update(object sender, PropertyChangedEventArgs e)
         {
             ICircle circle = (ICircle)sender;
-            X = circle.X;
-            Y = circle.Y;
+            X = circle.X - diameter / 2;
+            Y = circle.Y - diameter / 2;
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = "")

@@ -7,7 +7,7 @@
         xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
         mc:Ignorable="d"
         Title="Billard" Height="550" Width="900">
-    <Grid>
+    <Grid Background="DarkOliveGreen">
         <Grid.DataContext>
             <viewModel:ViewModelApi />
         </Grid.DataContext>
@@ -15,7 +15,7 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="29*"/>
         </Grid.ColumnDefinitions>
-        <Border BorderThickness="4" BorderBrush="Green" Height="400" Width="300" Grid.Column="1" Margin="175,17,250,17">
+        <Border Background="White" Height="400" Width="300" BorderThickness="5" BorderBrush="White" Grid.Column="1" Margin="175,17,250,17">
             <ItemsControl ItemsSource="{Binding Balls}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

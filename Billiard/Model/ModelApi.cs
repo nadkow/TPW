@@ -31,7 +31,7 @@ namespace Model
 
         public override void Start(int noOfOrbs)
         {
-            this.logicApi.Start(290, 390, noOfOrbs); // -5 bo promien kulki
+            this.logicApi.Start(300, 400, noOfOrbs); // -5 bo promien kulki
             GetCircles();
 
         }
