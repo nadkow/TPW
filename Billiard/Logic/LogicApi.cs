@@ -78,7 +78,10 @@ namespace Logic
                     double distance = Math.Sqrt(Math.Pow(orb.X - oneOfOrbs.X, 2) + Math.Pow(orb.Y - oneOfOrbs.Y, 2));
                     if (distance <= 10)
                     {
-                        orb.Collision(oneOfOrbs);
+                        if ((orb.XSpeed - oneOfOrbs.XSpeed)*(oneOfOrbs.X - orb.X) + (orb.YSpeed - oneOfOrbs.YSpeed)*(oneOfOrbs.Y - orb.Y) >= 0)
+                        {
+                            orb.Collision(oneOfOrbs);
+                        }
                     }
                 }
             }
@@ -86,15 +89,16 @@ namespace Logic
 
         private void CheckCollisionWithBorder(ILogicOrb orb)
         {
-            if (orb.Y >= height-5 || orb.Y <= 5)
+            if ((orb.Y >= height-5 || orb.Y <= 5) && (orb.Y < height || orb.Y > 0))
             {
                 orb.CollisionBorderY();
             }
-            else if(orb.X >= width-5 || orb.X <= 5)
+            else if((orb.X >= width-5 || orb.X <= 5) && (orb.X < width || orb.X > 0))
             {
                 orb.CollisionBorderX();
             }
         }
+
         protected void OnPropertyChanged([CallerMemberName] string name = "")
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
