@@ -14,9 +14,5 @@ namespace Data
             return new Orb(rnd.Next(5, tableWidth-5), rnd.Next(5, tableHeight-5)); 
         }
 
-        public override void Dispose(IOrb orb)
-        {
-            orb.DisposeTimer();
-        }
     }
 }

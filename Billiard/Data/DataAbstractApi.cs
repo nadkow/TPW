@@ -14,6 +14,5 @@ namespace Data
         }
 
         public abstract IOrb CreateOrb(int tableWidth, int tableHeight);
-        public abstract void Dispose(IOrb orb);
     }
 }

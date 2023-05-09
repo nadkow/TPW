@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Data;
@@ -17,6 +18,10 @@ namespace LogicTests
             private double x;
             private double y;
             private int d = 10;
+            private int m = 5;
+            private double xspeed;
+            private double yspeed;
+            private int period = 100;
             public MockOrb(double x, double y)
             {
                 this.x = x;
@@ -26,21 +31,36 @@ namespace LogicTests
             public double X { get => x; set => X = value; }
             public double Y { get => y; set => Y = value; }
             public int D { get => d; set => D = value; }
+            public int M { get  => m; set => m = value; }
+            public double XSpeed { get => xspeed; }
+            public double YSpeed { get => yspeed; }
 
             public event PropertyChangedEventHandler? PropertyChanged;
 
-            public void DisposeTimer()
-            {
+            public void ChangeRoute(double xv, double yv){}
 
+            public void Collision(IOrb orb){}
+
+            public void CollisionBorderX(){}
+
+            public void CollisionBorderY(){}
+
+            public void DisposeTimer() { }
+            public void SetSpeed(double x, double y) { }
+
+            public async Task Start()
+            {
+                while (true) //to zamiast funkcji ChangePosition i Timera
+                {
+                    x += xspeed;
+                    y += yspeed;
+                    await Task.Delay(period);
+                }
             }
         }
 
         sealed class MockDataApi : DataAbstractApi
         {
-            public override void Dispose(IOrb orb)
-            {
-                orb.DisposeTimer();
-            }
 
             public override IOrb CreateOrb(int tableWidth, int tableHeight)
             {
