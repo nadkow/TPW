@@ -89,13 +89,25 @@ namespace Logic
 
         private void CheckCollisionWithBorder(ILogicOrb orb)
         {
-            if ((orb.Y >= height-5 || orb.Y <= 5) && (orb.Y < height || orb.Y > 0))
+            if (orb.Y >= height - 5)
             {
-                orb.CollisionBorderY();
+                if (orb.YSpeed > 0)
+                    orb.CollisionBorderY();
             }
-            else if((orb.X >= width-5 || orb.X <= 5) && (orb.X < width || orb.X > 0))
+            else if(orb.Y <= 5)
             {
-                orb.CollisionBorderX();
+                if (orb.YSpeed < 0)
+                    orb.CollisionBorderY();
+            }
+            else if (orb.X >= width - 5)
+            {
+                if (orb.XSpeed > 0)
+                    orb.CollisionBorderX();
+            }
+            else if (orb.X <= 5)
+            {
+                if (orb.XSpeed < 0)
+                    orb.CollisionBorderX();
             }
         }
 
