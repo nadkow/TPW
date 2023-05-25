@@ -79,11 +79,13 @@ namespace Logic
                     double distance = Math.Sqrt(Math.Pow(x - otherX, 2) + Math.Pow(y - otherY, 2));
                     if (distance <= 10)
                     {
-                        if ((orb.XSpeed - oneOfOrbs.XSpeed)*(otherX - x) + (orb.YSpeed - oneOfOrbs.YSpeed)*(otherY - y) >= 0)
+                        Vector speed = orb.Speed;
+                        Vector otherSpeed = oneOfOrbs.Speed;
+                        if ((speed.x - otherSpeed.x)*(otherX - x) + (speed.y - otherSpeed.y)*(otherY - y) >= 0)
                         {
-                            double xs = orb.XSpeed;
-                            double xy = orb.YSpeed;
-                            orb.SetSpeed(oneOfOrbs.XSpeed, oneOfOrbs.YSpeed);
+                            double xs = speed.x;
+                            double xy = speed.y;
+                            orb.SetSpeed(otherSpeed.x, otherSpeed.y);
                             oneOfOrbs.SetSpeed(xs, xy);
                         }
                     }

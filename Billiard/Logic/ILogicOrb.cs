@@ -13,6 +13,7 @@ namespace Logic
         public Vector Speed { get; }
         public Vector Coords { get; }
         public Object CoordsLock { get; }
+        public Object SpeedLock { get; }
         public event PositionChanged PropertyChanged;
         public IOrb GetOrb();
         public void SetSpeed(double x, double y);
