@@ -8,7 +8,6 @@ namespace Data
         public double X { get;}
         public double Y { get;}
         public int D { get;}
-        public int M { get;}
         public double XSpeed { get;}
         public double YSpeed { get;}
         public Vector Speed { get;}

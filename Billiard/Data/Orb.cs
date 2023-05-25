@@ -6,12 +6,11 @@ namespace Data
     internal class Orb : IOrb
     {
         private int d = 10;
-        private int m = 5;
         private double xspeed;
         private double yspeed;
         private Vector coords = new Vector();
         private Vector speed = new Vector();
-        private int period = 100;
+        private int period;
         private static Random rnd = new Random();
         private Object coordsLock = new Object();
         private Object speedLock = new Object();
@@ -19,7 +18,6 @@ namespace Data
         public double X { get => coords.x;}
         public double Y { get => coords.y;}
         public int D { get => d;}
-        public int M { get => m;}
         public double XSpeed { get => xspeed;}
         public double YSpeed { get => yspeed;}
         public Vector Speed { get => speed;}
@@ -48,7 +46,7 @@ namespace Data
         private void CalculatePeriod()
         {
             double v = Math.Sqrt((yspeed * yspeed) + (xspeed * xspeed));
-            period = (int)(100 / v);
+            period = Convert.ToInt32(100 / v);
         }
 
         public void CollisionBorderX()
