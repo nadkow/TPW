@@ -72,15 +72,30 @@ namespace Logic
 
         private void CheckCollisionWithOrbs(ILogicOrb orb)
         {
-            foreach(var oneOfOrbs in logicOrbs) {
+            double x, y, otherX, otherY;
+            lock (orb.CoordsLock)
+            {
+                x = orb.Coords.x;
+                y = orb.Coords.y;
+            }
+            foreach (var oneOfOrbs in logicOrbs)
+            {
                 if (oneOfOrbs != orb)
                 {
-                    double distance = Math.Sqrt(Math.Pow(orb.X - oneOfOrbs.X, 2) + Math.Pow(orb.Y - oneOfOrbs.Y, 2));
+                    lock (oneOfOrbs.CoordsLock)
+                    {
+                        otherX = oneOfOrbs.Coords.x;
+                        otherY = oneOfOrbs.Coords.y;
+                    }
+                    double distance = Math.Sqrt(Math.Pow(x - otherX, 2) + Math.Pow(y - otherY, 2));
                     if (distance <= 10)
                     {
-                        if ((orb.XSpeed - oneOfOrbs.XSpeed)*(oneOfOrbs.X - orb.X) + (orb.YSpeed - oneOfOrbs.YSpeed)*(oneOfOrbs.Y - orb.Y) >= 0)
+                        if ((orb.XSpeed - oneOfOrbs.XSpeed)*(otherX - x) + (orb.YSpeed - oneOfOrbs.YSpeed)*(otherY - y) >= 0)
                         {
-                            orb.Collision(oneOfOrbs);
+                            double xs = orb.XSpeed;
+                            double xy = orb.YSpeed;
+                            orb.SetSpeed(oneOfOrbs.XSpeed, oneOfOrbs.YSpeed);
+                            oneOfOrbs.SetSpeed(xs, xy);
                         }
                     }
                 }

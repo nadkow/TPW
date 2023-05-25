@@ -5,22 +5,26 @@ namespace Data
 {
     internal class Orb : IOrb
     {
-        private double x;
-        private double y;
         private int d = 10;
         private int m = 5;
         private double xspeed;
         private double yspeed;
+        private Vector coords = new Vector();
+        private Vector speed = new Vector();
         private int period = 100;
-        private Timer ChangePositionTimer;
-        private Random rnd = new Random();
+        private static Random rnd = new Random();
+        private Object coordsLock = new Object();
+        private Object speedLock = new Object();
 
-        public double X { get => x;}
-        public double Y { get => y;}
+        public double X { get => coords.x;}
+        public double Y { get => coords.y;}
         public int D { get => d;}
-        public int M { get => m; }
+        public int M { get => m;}
         public double XSpeed { get => xspeed;}
         public double YSpeed { get => yspeed;}
+        public Vector Speed { get => speed;}
+        public Vector Coords { get => coords;}
+
         public void SetSpeed(double x, double y)
         {
             xspeed = x;
@@ -28,38 +32,23 @@ namespace Data
             CalculatePeriod();
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PositionChanged? PropertyChanged;
 
         public Orb(double x, double y)
         {
-            this.x = x;
-            this.y = y;
+            coords.x = x;
+            coords.y = y;
             // losowa predkosc poczatkowa
-            xspeed = rnd.NextDouble() * 6 - 3;
-            yspeed = rnd.NextDouble() * 6 - 3;
-            Start();
+            xspeed = rnd.NextDouble() * 8 - 4;
+            yspeed = rnd.NextDouble() * 8 - 4;
             CalculatePeriod();
+            Start();
         }
 
         private void CalculatePeriod()
         {
             double v = Math.Sqrt((yspeed * yspeed) + (xspeed * xspeed));
             period = (int)(100 / v);
-        }
-
-        public void Collision(IOrb orb)
-        {
-            double xv = xspeed;
-            double yv = yspeed;
-            ChangeRoute(orb.XSpeed, orb.YSpeed);
-            orb.ChangeRoute(xv,yv);
-        } 
-
-        public void ChangeRoute(double xv, double yv)
-        {
-            xspeed = xv;
-            yspeed = yv;
-            CalculatePeriod();
         }
 
         public void CollisionBorderX()
@@ -72,26 +61,15 @@ namespace Data
             yspeed = -yspeed;
         }
 
-        public async Task Start()
+        private async Task Start()
         {
-            while (true) //to zamiast funkcji ChangePosition i Timera
+            while (true)
             {
-                x += xspeed;
-                y += yspeed;
-                OnPropertyChanged();
+                coords.y += yspeed;
+                coords.x += xspeed;
+                this.PropertyChanged?.Invoke(this, coords.x, coords.y);           
                 await Task.Delay(period);
             }
         }
-
-        public void DisposeTimer()
-        {
-            ChangePositionTimer.Dispose();
-        }
-
-        protected void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
     }
 }
