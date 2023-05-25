@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Data;
+﻿using Data;
 
 namespace Logic
 {
@@ -17,7 +10,7 @@ namespace Logic
         private Vector speed = new Vector();
         private Object coordsLock = new Object();
         private Object speedLock = new Object();
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PositionChanged? PropertyChanged;
         public double X { get => coords.x;}
         public double Y { get => coords.y;}
         public int D { get => diameter;}
@@ -48,7 +41,7 @@ namespace Logic
                 coords.x = x;
                 coords.y = y;
             }
-            OnPropertyChanged();
+            this.PropertyChanged?.Invoke(this, coords.x, coords.y);
         }
 
         public void Dispose()
@@ -63,11 +56,6 @@ namespace Logic
         public void CollisionBorderY()
         {
             orb.CollisionBorderY();
-        }
-
-        protected void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

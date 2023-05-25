@@ -1,12 +1,4 @@
 ﻿using Logic;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
@@ -17,7 +9,7 @@ namespace Model
         private double y;
         private int diameter;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PositionChanged? PropertyChanged;
 
         public Circle(ILogicOrb orb)
         {
@@ -31,17 +23,11 @@ namespace Model
         public double Y { get => y;}
         public int D { get => diameter;}
 
-        private void Update(object sender, PropertyChangedEventArgs e)
+        private void Update(ILogicOrb orb, double x, double y)
         {
-            ILogicOrb orb = (ILogicOrb)sender;
-            x = orb.X - 5;
-            y = orb.Y - 5;
-            OnPropertyChanged();
-        }
-
-        protected void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            this.x = x - 5;
+            this.y = y - 5;
+            this.PropertyChanged?.Invoke(this.x, this.y);
         }
     }
 }

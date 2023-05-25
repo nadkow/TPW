@@ -1,9 +1,9 @@
-﻿using System.ComponentModel;
-using Data;
+﻿using Data;
 
 namespace Logic
 {
-    public interface ILogicOrb : INotifyPropertyChanged
+    public delegate void PositionChanged(ILogicOrb sender, double x, double y);
+    public interface ILogicOrb
     {
         public double X { get; }
         public double Y { get; }
@@ -14,6 +14,7 @@ namespace Logic
         public Vector Coords { get; }
         public Object CoordsLock { get; }
         public Object SpeedLock { get; }
+        public event PositionChanged PropertyChanged;
         public IOrb GetOrb();
         public void SetSpeed(double x, double y);
         public void Dispose();

@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Data;
-using Logic;
-
-namespace Model
+﻿namespace Model
 {
-    public interface ICircle : INotifyPropertyChanged
+    public delegate void PositionChanged(double x, double y);
+    public interface ICircle
     {
         public double X { get; }
         public double Y { get; }
         public int D { get; }
+        public event PositionChanged PropertyChanged;
     }
 }

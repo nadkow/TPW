@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Data;
 using Model;
 
 namespace ViewModel
 {
-    internal class ViewModelCircle :IViewModelCircle
+    internal class ViewModelCircle : IViewModelCircle
     {
         private double x;
         private double y;
@@ -23,17 +16,16 @@ namespace ViewModel
         public double Y { get => y; set { y = value; OnPropertyChanged(nameof(Y)); } }
         public int D { get => diameter; set => diameter = value; }
         public ViewModelCircle(ICircle circle) {
-            x = circle.X - diameter/2;
-            y = circle.Y - diameter/2;
+            x = circle.X - 5;
+            y = circle.Y - 5;
             diameter = circle.D;
             circle.PropertyChanged += Update;
         }
 
-        private void Update(object sender, PropertyChangedEventArgs e)
+        private void Update(double x, double y)
         {
-            ICircle circle = (ICircle)sender;
-            X = circle.X - diameter / 2;
-            Y = circle.Y - diameter / 2;
+            X = x - 5;
+            Y = y - 5;
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = "")

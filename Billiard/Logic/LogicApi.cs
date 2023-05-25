@@ -1,10 +1,5 @@
-﻿  using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
 using Data;
 
 namespace Logic
@@ -59,25 +54,19 @@ namespace Logic
 
         }
 
-        private void OrbPosChanged(object sender, PropertyChangedEventArgs e)
+        private void OrbPosChanged(ILogicOrb orb, double x, double y)
         {
-            ILogicOrb orb = (ILogicOrb)sender;
             semaphoreOrb.WaitOne();
-            CheckCollisionWithOrbs(orb);
+            CheckCollisionWithOrbs(orb, x, y);
             semaphoreOrb.Release(1);
             semaphoreBorder.WaitOne();
-            CheckCollisionWithBorder(orb);
+            CheckCollisionWithBorder(orb, x, y);
             semaphoreBorder.Release(1);
         }
 
-        private void CheckCollisionWithOrbs(ILogicOrb orb)
+        private void CheckCollisionWithOrbs(ILogicOrb orb, double x, double y)
         {
-            double x, y, otherX, otherY;
-            lock (orb.CoordsLock)
-            {
-                x = orb.Coords.x;
-                y = orb.Coords.y;
-            }
+            double otherX, otherY;
             foreach (var oneOfOrbs in logicOrbs)
             {
                 if (oneOfOrbs != orb)
@@ -102,24 +91,24 @@ namespace Logic
             }
         }
 
-        private void CheckCollisionWithBorder(ILogicOrb orb)
+        private void CheckCollisionWithBorder(ILogicOrb orb, double x, double y)
         {
-            if (orb.Y >= height - 5)
+            if (y >= height - 5)
             {
                 if (orb.YSpeed > 0)
                     orb.CollisionBorderY();
             }
-            else if(orb.Y <= 5)
+            else if(y <= 5)
             {
                 if (orb.YSpeed < 0)
                     orb.CollisionBorderY();
             }
-            else if (orb.X >= width - 5)
+            else if (x >= width - 5)
             {
                 if (orb.XSpeed > 0)
                     orb.CollisionBorderX();
             }
-            else if (orb.X <= 5)
+            else if (x <= 5)
             {
                 if (orb.XSpeed < 0)
                     orb.CollisionBorderX();
