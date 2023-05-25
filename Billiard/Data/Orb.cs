@@ -25,8 +25,11 @@ namespace Data
 
         public void SetSpeed(double x, double y)
         {
-            xspeed = x;
-            yspeed = y;
+            lock(speedLock)
+            {
+                xspeed = x;
+                yspeed = y;
+            }
             CalculatePeriod();
         }
 
@@ -45,8 +48,13 @@ namespace Data
 
         private void CalculatePeriod()
         {
-            double v = Math.Sqrt((yspeed * yspeed) + (xspeed * xspeed));
-            period = Convert.ToInt32(100 / v);
+            double v;
+            lock (speedLock)
+            {
+                v = Math.Max(Math.Abs(xspeed), Math.Abs(yspeed));
+            }
+            v += 1; // +1 żeby nie było <0;1)
+            period = Convert.ToInt32(100 / v); // max 100 min 20
         }
 
         public void CollisionBorderX()

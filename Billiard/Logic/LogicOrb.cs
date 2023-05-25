@@ -19,7 +19,6 @@ namespace Logic
         public Vector Speed { get => speed; }
         public Vector Coords { get => coords; }
         public Object CoordsLock { get => coordsLock; }
-        public Object SpeedLock { get => speedLock; }
         public void SetSpeed(double x, double y)
         {
             orb.SetSpeed(x, y);
