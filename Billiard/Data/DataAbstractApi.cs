@@ -15,6 +15,6 @@ namespace Data
         }
 
         public abstract IOrb CreateOrb(int tableWidth, int tableHeight);
-        public abstract void Start(int tableWidth, int tableHeight);
+        public abstract void Start(int tableWidth, int tableHeight, int noOfOrbs);
     }
 }
