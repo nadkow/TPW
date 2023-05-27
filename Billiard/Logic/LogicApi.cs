@@ -41,6 +41,7 @@ namespace Logic
             {
                 orb.PropertyChanged += OrbPosChanged;
             }
+            dataApi.Start(width, height);
             // laczymy event dopiero w metodzie Start, a nie w konstruktorze, bo wtedy orby jeszcze nie istnieja
         }
 
