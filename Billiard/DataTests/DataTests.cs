@@ -28,7 +28,7 @@ namespace DataTests
         {
             bool wasRaise = false;
             IOrb orb = DataApi.CreateOrb(100, 100);
-            orb.PropertyChanged += (s, e) => { wasRaise = true; };
+            orb.PropertyChanged += (s, x, y) => { wasRaise = true; };
             Thread.Sleep(500);
             Assert.That(wasRaise, Is.EqualTo(true));
         }

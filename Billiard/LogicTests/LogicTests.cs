@@ -35,7 +35,20 @@ namespace LogicTests
             public double XSpeed { get => xspeed; }
             public double YSpeed { get => yspeed; }
 
+            public Vector Speed => throw new NotImplementedException();
+
+            public Vector Coords => throw new NotImplementedException();
+
             public event PropertyChangedEventHandler? PropertyChanged;
+
+            event Data.PositionChanged IOrb.PropertyChanged
+            {
+                add
+                {}
+
+                remove
+                {}
+            }
 
             public void ChangeRoute(double xv, double yv){}
 
@@ -65,6 +78,11 @@ namespace LogicTests
             public override IOrb CreateOrb(int tableWidth, int tableHeight)
             {
                 return new MockOrb(1, 1);
+            }
+
+            public override void Start(int tableWidth, int tableHeight, int noOfOrbs)
+            {
+                
             }
         }
 
