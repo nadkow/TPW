@@ -12,32 +12,30 @@ namespace LogicTests
 {
     [TestFixture]
     internal class LogicTests
+
     {
         sealed class MockOrb : IOrb
         {
-            private double x;
-            private double y;
             private int d = 10;
-            private int m = 5;
-            private double xspeed;
-            private double yspeed;
             private int period = 100;
+            private Vector coords = new Vector();
+            private Vector speed = new Vector();
+            private Object speedLock = new Object();
             public MockOrb(double x, double y)
             {
-                this.x = x;
-                this.y = y;
+                coords.x = x;
+                coords.y = y;
             }
 
-            public double X { get => x; set => X = value; }
-            public double Y { get => y; set => Y = value; }
+            public double X { get => coords.x; set => X = value; }
+            public double Y { get => coords.y; set => Y = value; }
             public int D { get => d; set => D = value; }
-            public int M { get  => m; set => m = value; }
-            public double XSpeed { get => xspeed; }
-            public double YSpeed { get => yspeed; }
+            public double XSpeed { get => speed.x; }
+            public double YSpeed { get => speed.y; }
 
-            public Vector Speed => throw new NotImplementedException();
+            public Vector Speed { get { lock (speedLock) { return new Vector(speed.x, speed.y); } } }
 
-            public Vector Coords => throw new NotImplementedException();
+            public Vector Coords { get => coords; }
 
             public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -63,10 +61,10 @@ namespace LogicTests
 
             public async Task Start()
             {
-                while (true) //to zamiast funkcji ChangePosition i Timera
+                while (true)
                 {
-                    x += xspeed;
-                    y += yspeed;
+                    coords.y += speed.y;
+                    coords.x += speed.x;
                     await Task.Delay(period);
                 }
             }
