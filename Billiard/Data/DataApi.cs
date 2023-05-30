@@ -11,8 +11,6 @@ namespace Data
     internal class DataApi : DataAbstractApi
     {
         private static ConcurrentQueue<string> textToWrite = new ConcurrentQueue<string>();
-        private CancellationTokenSource tokenSource = new CancellationTokenSource();
-        private CancellationToken token;
         Stopwatch stopWatch = new Stopwatch();
         private string filename;
         private static Random rnd = new Random();
@@ -46,13 +44,8 @@ namespace Data
 
         private async Task Write()
         {
-            token = tokenSource.Token;
             while (true)
             {
-                if (token.IsCancellationRequested)
-                {
-                    return; // TODO tu bedzie zakonczenie struktury dokumentu xml
-                }
                 using (StreamWriter sw = File.AppendText(filename))
                 {
                     while (textToWrite.TryDequeue(out string line))
