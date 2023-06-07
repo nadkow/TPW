@@ -7,15 +7,12 @@ namespace Logic
         IOrb orb;
         private int diameter;
         private Vector coords = new Vector();
-        private Vector speed = new Vector();
         private Object coordsLock = new Object();
         private Object speedLock = new Object();
         public event PositionChanged? PropertyChanged;
         public double X { get => coords.x;}
         public double Y { get => coords.y;}
         public int D { get => diameter;}
-        public double XSpeed { get => orb.XSpeed;}
-        public double YSpeed { get => orb.YSpeed;}
         public Vector Speed { get => orb.Speed; }
         public Vector Coords { get => coords; }
         public Object CoordsLock { get => coordsLock; }
@@ -28,8 +25,11 @@ namespace Logic
         public LogicOrb(IOrb orb)
         {
             this.orb = orb;
-            coords.x = orb.X;
-            coords.y = orb.Y;
+            lock(orb.CoordsLock)
+            {
+                coords.x = orb.Coords.x;
+                coords.y = orb.Coords.y;
+            }
             diameter = orb.D;
             orb.PropertyChanged += Update;
         }

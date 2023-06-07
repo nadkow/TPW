@@ -11,14 +11,12 @@ namespace Data
         private int period;
         private static Random rnd = new Random();
         private Object speedLock = new Object();
+        private Object coordsLock = new Object();
 
-        public double X { get => coords.x;}
-        public double Y { get => coords.y;}
         public int D { get => d;}
-        public double XSpeed { get => speed.x;}
-        public double YSpeed { get => speed.y;}
+        public Object CoordsLock { get => coordsLock; }
         public Vector Speed { get { lock (speedLock) { return new Vector(speed.x, speed.y); } } }
-        public Vector Coords { get => coords;}
+        public Vector Coords { get { lock (coordsLock) { return new Vector(coords.x, coords.y); } } }
 
         public void SetSpeed(double x, double y)
         {
@@ -56,21 +54,33 @@ namespace Data
 
         public void CollisionBorderX()
         {
-            speed.x = -speed.x;
+            lock (speedLock)
+            {
+                speed.x = -speed.x;
+            }
         }
 
         public void CollisionBorderY()
         {
-            speed.y = -speed.y;
+            lock (speedLock)
+            {
+                speed.y = -speed.y;
+            }
         }
 
         private async Task Start()
         {
             while (true)
             {
-                coords.y += speed.y;
-                coords.x += speed.x;
-                this.PropertyChanged?.Invoke(this, coords.x, coords.y);           
+                lock (coordsLock)
+                {
+                    lock (speedLock)
+                    {
+                        coords.y += speed.y;
+                        coords.x += speed.x;
+                    }
+                    this.PropertyChanged?.Invoke(this, coords.x, coords.y);
+                }
                 await Task.Delay(period);
             }
         }

@@ -8,8 +8,6 @@ namespace Logic
         public double X { get; }
         public double Y { get; }
         public int D { get; }
-        public double XSpeed { get; }
-        public double YSpeed { get; }
         public Vector Speed { get; }
         public Vector Coords { get; }
         public Object CoordsLock { get; }
