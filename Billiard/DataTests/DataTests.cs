@@ -16,10 +16,10 @@ namespace DataTests
         public void DataCreateOrbTest() 
         {
             IOrb orb = DataApi.CreateOrb(100, 100);
-            Assert.That(orb.Y, Is.AtMost(100));
-            Assert.That(orb.X, Is.AtMost(100));
-            Assert.That(orb.Y, Is.AtLeast(0));
-            Assert.That(orb.X, Is.AtLeast(0));
+            Assert.That(orb.Coords.y, Is.AtMost(100));
+            Assert.That(orb.Coords.x, Is.AtMost(100));
+            Assert.That(orb.Coords.y, Is.AtLeast(0));
+            Assert.That(orb.Coords.x, Is.AtLeast(0));
         }
 
 
@@ -28,7 +28,7 @@ namespace DataTests
         {
             bool wasRaise = false;
             IOrb orb = DataApi.CreateOrb(100, 100);
-            orb.PropertyChanged += (s, x, y) => { wasRaise = true; };
+            orb.PropertyChanged += (s, Coords) => { wasRaise = true; };
             Thread.Sleep(500);
             Assert.That(wasRaise, Is.EqualTo(true));
         }
@@ -37,11 +37,11 @@ namespace DataTests
         public async Task DataMoveTest()
         {
             IOrb orb = DataApi.CreateOrb(100, 100);
-            double first_x = orb.X;
-            double first_y = orb.Y;
+            double first_x = orb.Coords.x;
+            double first_y = orb.Coords.y;
             Thread.Sleep(500);
-            Assert.That(orb.X, Is.Not.EqualTo(first_x));
-            Assert.That(orb.Y, Is.Not.EqualTo(first_y));
+            Assert.That(orb.Coords.x, Is.Not.EqualTo(first_x));
+            Assert.That(orb.Coords.y, Is.Not.EqualTo(first_y));
 
         }
     }

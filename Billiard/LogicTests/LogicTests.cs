@@ -21,6 +21,7 @@ namespace LogicTests
             private Vector coords = new Vector();
             private Vector speed = new Vector();
             private Object speedLock = new Object();
+            private Object coordsLock = new Object();
             public MockOrb(double x, double y)
             {
                 coords.x = x;
@@ -36,6 +37,8 @@ namespace LogicTests
             public Vector Speed { get { lock (speedLock) { return new Vector(speed.x, speed.y); } } }
 
             public Vector Coords { get => coords; }
+
+            public object CoordsLock { get => coordsLock; }
 
             public event PropertyChangedEventHandler? PropertyChanged;
 
