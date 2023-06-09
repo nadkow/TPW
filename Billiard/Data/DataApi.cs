@@ -19,14 +19,15 @@ namespace Data
 
         public override IOrb CreateOrb(int tableWidth, int tableHeight)
         {
-            IOrb orb = new Orb(rnd.Next(5, tableWidth - 5), rnd.Next(5, tableHeight - 5));
-            orb.PropertyChanged += fw.EnqueuePos;
-            return orb;
+           IOrb orb = new Orb(rnd.Next(5, tableWidth - 5), rnd.Next(5, tableHeight - 5));
+           orb.PropertyChanged += fw.EnqueuePos;
+           return orb;
         }
 
         public override void Start(int tableWidth, int tableHeight, int noOfOrbs)
         {
             fw.Start(tableWidth, tableHeight, noOfOrbs);
         }
+
     }
 }

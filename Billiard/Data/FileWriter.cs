@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Nito.AsyncEx;
 
 namespace Data
 {
@@ -13,7 +14,12 @@ namespace Data
         private static ConcurrentQueue<orbSet> textToWrite = new ConcurrentQueue<orbSet>();
         Stopwatch stopWatch = new Stopwatch();
         private string? filename;
-
+        //private ManualResetEvent resetEvent = new ManualResetEvent(true);
+        private AsyncManualResetEvent resetEvent = new AsyncManualResetEvent(false);
+        internal void setEvent()
+        {
+            resetEvent.Set();
+        }
         public FileWriter()
         {
             stopWatch.Start();
@@ -23,6 +29,7 @@ namespace Data
         {
             orbSet entry = new orbSet(orb.GetHashCode(), stopWatch.Elapsed, x, y);
             textToWrite.Enqueue(entry);
+            resetEvent.Set();
         }
 
         private async Task Write()
@@ -38,9 +45,11 @@ namespace Data
                         await sw.WriteLineAsync(line);
                     }
                     sw.Flush();
-                    await Task.Delay(100);
                 }
+                await resetEvent.WaitAsync();
+                resetEvent.Reset();
             }
+            
         }
 
         public void Start(int tableWidth, int tableHeight, int noOfOrbs)
