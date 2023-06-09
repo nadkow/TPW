@@ -14,7 +14,6 @@ namespace Data
         private static ConcurrentQueue<orbSet> textToWrite = new ConcurrentQueue<orbSet>();
         Stopwatch stopWatch = new Stopwatch();
         private string? filename;
-        //private ManualResetEvent resetEvent = new ManualResetEvent(true);
         private AsyncManualResetEvent resetEvent = new AsyncManualResetEvent(false);
         internal void setEvent()
         {
@@ -25,9 +24,9 @@ namespace Data
             stopWatch.Start();
         }
 
-        public void EnqueuePos(IOrb orb, double x, double y)
+        public void EnqueuePos(IOrb orb,Vector coords)
         {
-            orbSet entry = new orbSet(orb.GetHashCode(), stopWatch.Elapsed, x, y);
+            orbSet entry = new orbSet(orb.GetHashCode(), stopWatch.Elapsed, coords.x, coords.y);
             textToWrite.Enqueue(entry);
             resetEvent.Set();
         }

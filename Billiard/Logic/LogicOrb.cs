@@ -34,12 +34,12 @@ namespace Logic
             orb.PropertyChanged += Update;
         }
        
-        private void Update(IOrb sender, double x, double y)
+        private void Update(IOrb sender, Vector newCoords)
         {
             lock(coordsLock)
             {
-                coords.x = x;
-                coords.y = y;
+                coords.x = newCoords.x;
+                coords.y = newCoords.y;
             }
             this.PropertyChanged?.Invoke(this, coords.x, coords.y);
         }

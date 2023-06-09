@@ -79,7 +79,7 @@ namespace Data
                         coords.y += speed.y;
                         coords.x += speed.x;
                     }
-                    this.PropertyChanged?.Invoke(this, coords.x, coords.y);
+                    this.PropertyChanged?.Invoke(this, coords);
                 }
                 await Task.Delay(period);
             }

@@ -2,7 +2,7 @@
 
 namespace Data
 {
-    public delegate void PositionChanged(IOrb sender, double x, double y);
+    public delegate void PositionChanged(IOrb sender, Vector coordinates);
     public interface IOrb
     {
         public int D { get;}
